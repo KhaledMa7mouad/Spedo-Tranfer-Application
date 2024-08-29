@@ -106,7 +106,7 @@ fun SignUpScreen2(
             )
         }
     ) { innerPadding ->
-        SignUp2(innerPadding, navController, country, mDate, viewModel, fullName, email, password)
+        SignUp2(innerPadding, navController, country, mDate, startscreen, fullName, email, password)
     }
 }
 
@@ -116,7 +116,7 @@ fun SignUp2(
     navController: NavController,
     country: MutableState<String>,
     mDate: MutableState<String>,
-    viewModel: SignUpViewModel,
+    viewModel: StartscreenViewModel,
     fullName: String,
     email: String,
     password: String,
