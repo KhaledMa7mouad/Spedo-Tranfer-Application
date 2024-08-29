@@ -105,47 +105,25 @@ fun SignUpScreen2(
                 }
             )
         }
-    ) { innerPadding ->
-        SignUp2(innerPadding, navController, country, mDate, startscreen, fullName, email, password)
+    ) { innerPadding -> SignUp2( country ,mDate )
     }
 }
 
 @Composable
 fun SignUp2(
-    innerPadding: PaddingValues,
-    navController: NavController,
+
     country: MutableState<String>,
     mDate: MutableState<String>,
-    viewModel: StartscreenViewModel,
-    fullName: String,
-    email: String,
-    password: String,
-    modifier: Modifier = Modifier
+
 ) {
     val context = LocalContext.current
-    val preferencesHelper = PreferencesHelper(context)
     val scrollState = rememberScrollState()
-    val signUpSuccess by viewModel.signUpSuccess.collectAsState()
 
-    LaunchedEffect(signUpSuccess) {
-        if (signUpSuccess == true) {
-            preferencesHelper.saveCredentialsSignUp(
-                email,
-                password,
-                fullName,
-                country.value,
-                mDate.value
-            )
-            preferencesHelper.clearCredentialsSignIn()
-            navController.navigate(SIGNIN_ROUTE)
-        } else if (signUpSuccess == false) {
-            Toast.makeText(context, "Sign Up Failed", Toast.LENGTH_SHORT).show()
-        }
-    }
+
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(
                 Brush.verticalGradient(
@@ -158,11 +136,10 @@ fun SignUp2(
                 )
             )
             .verticalScroll(scrollState)
-            .padding(innerPadding)
     ) {
         Spacer(modifier = Modifier.height(80.dp))
         Box(
-            contentAlignment = Alignment.Center, modifier = modifier.fillMaxWidth()
+            contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = "Speedo Transfer",
@@ -196,20 +173,10 @@ fun SignUp2(
             Spacer(modifier = Modifier.height(40.dp))
             Button(
                 onClick = {
-                    viewModel.signUp(
-                        fullName,
-                        email,
-                        "0112193837",
-                        "username",
-                        password,
-                        password,
-                        "male",
-                        country.value,
-                        mDate.value
-                    )
-                    navController.navigate(SIGNIN_ROUTE)
+
+
                 },
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 32.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -286,7 +253,7 @@ fun DatePickerButton(mDate: MutableState<String>) {
 }
 
 
-@Preview(device = "id:pixel_6a")
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun OverAll5() {
     SignUpScreen2(rememberNavController(), "mohamed", "mohamed.com", "101010")
