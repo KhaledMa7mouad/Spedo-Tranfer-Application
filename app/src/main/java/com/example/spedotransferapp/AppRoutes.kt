@@ -9,6 +9,9 @@ import androidx.navigation.compose.rememberNavController
 object Routes{
     const val FIRSTSIGNUP="firstsignup"
     const val SIGNIN="signin"
+    const val ONBOARDINGONE="onboardingone"
+    const val ONBOARDINGTWO="onboardingtwo"
+    const val ONBOARDINGTHREE="onboardingthree"
 }
 
 @Composable
@@ -25,6 +28,15 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         }
         composable(route = Routes.SIGNIN){
             SignIn(navController)
+        }
+        composable(route = Routes.ONBOARDINGONE){
+            OnBoardingScreen1(navController)
+        }
+        composable(route = Routes.ONBOARDINGTWO){
+            OnBoardingScreen2(navController)
+        }
+        composable(route = Routes.ONBOARDINGTHREE){
+            OnBoardingScreen3(navController)
         }
     }
 
