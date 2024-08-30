@@ -12,6 +12,7 @@ object Routes{
     const val ONBOARDINGONE="onboardingone"
     const val ONBOARDINGTWO="onboardingtwo"
     const val ONBOARDINGTHREE="onboardingthree"
+    const val TIMEOUT = "timeout"
 }
 
 @Composable
@@ -37,6 +38,9 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         }
         composable(route = Routes.ONBOARDINGTHREE){
             OnBoardingScreen3(navController)
+        }
+        composable(route = Routes.TIMEOUT){
+            Timeout(navController)
         }
     }
 
