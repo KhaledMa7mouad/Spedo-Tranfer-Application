@@ -35,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -44,11 +45,16 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.gittest.ui.theme.DarkWhite
+import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.offred
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Timeout(modifier: Modifier = Modifier) {
+fun Timeout(navController: NavController, modifier: Modifier = Modifier) {
     var showDialog by remember { mutableStateOf(true) } // Controls dialog visibility
     var text by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -57,7 +63,9 @@ fun Timeout(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(
+                Brush.linearGradient(colors = listOf(DarkWhite, LightDarkRed))
+            )
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -87,7 +95,7 @@ fun Timeout(modifier: Modifier = Modifier) {
         Text(
             text = "Email",
             modifier = Modifier
-                .padding(top = 60.dp, start = 16.dp)
+                .padding(top = 60.dp, start = 16.dp , bottom = 8.dp)
                 .align(Alignment.Start),
             fontWeight = FontWeight.SemiBold,
             fontSize = 20.sp
@@ -157,7 +165,7 @@ fun Timeout(modifier: Modifier = Modifier) {
 
 
         Button(
-            onClick = { },
+            onClick = { navController.navigate(Routes.SIGNIN) },
             modifier = Modifier
                 .fillMaxWidth(0.95f)
                 .height(88.dp)
@@ -247,5 +255,5 @@ fun TimeoutDialog(onDismiss: () -> Unit) {
 @Preview
 @Composable
 private fun SignInScreenPreview() {
-    Timeout()
+    Timeout(navController = rememberNavController())
 }
