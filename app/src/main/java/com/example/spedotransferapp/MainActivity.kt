@@ -22,20 +22,22 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SpedoTransferAppTheme {
-                var showFirstScreen by remember { mutableStateOf(true) }
+//                var showFirstScreen by remember { mutableStateOf(true) }
+//
+//                LaunchedEffect(Unit) {
+//                    delay(3000)
+//                    showFirstScreen = false
+//                }
+//                if (showFirstScreen) {
+//                    FirstScreen()
+//                } else {
+//                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                        AppNavHost()
+//                    }
 
-                LaunchedEffect(Unit) {
-                    delay(3000)
-                    showFirstScreen = false
-                }
-                if (showFirstScreen) {
-                    FirstScreen()
-                } else {
-                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        AppNavHost()
-                    }
+                Timeout()
                 }
             }
         }
     }
-}
+
