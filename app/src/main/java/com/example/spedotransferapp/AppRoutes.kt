@@ -13,6 +13,9 @@ object Routes{
     const val ONBOARDINGTWO="onboardingtwo"
     const val ONBOARDINGTHREE="onboardingthree"
     const val TIMEOUT = "timeout"
+    const val SETTINGS="settings"
+    const val EDITPROFILE="editprofile"
+    const val EDITPASSWORD="editpassword"
 }
 
 @Composable
@@ -41,6 +44,15 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         }
         composable(route = Routes.TIMEOUT){
             Timeout(navController)
+        }
+        composable(route = Routes.SETTINGS){
+            SettingsScreen(navController)
+        }
+        composable(route = Routes.EDITPROFILE){
+            EditProfileScreen(navController)
+        }
+        composable(route = Routes.EDITPASSWORD){
+            EditPasswordScreen(navController)
         }
     }
 

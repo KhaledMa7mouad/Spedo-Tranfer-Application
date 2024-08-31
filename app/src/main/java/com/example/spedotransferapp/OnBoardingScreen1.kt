@@ -46,7 +46,7 @@ fun OnBoardingScreen1(navController: NavController,modifier: Modifier = Modifier
             horizontalAlignment = Alignment.End,
             modifier = Modifier.fillMaxWidth()
         ){
-            TextButton(onClick = { /*TODO*/ }) {
+            TextButton(onClick = { navController.navigate(Routes.EDITPROFILE) }) {
                 Text(
                     text = "Skip",
                     fontSize = 16.sp,
