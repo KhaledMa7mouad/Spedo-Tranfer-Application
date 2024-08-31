@@ -62,7 +62,7 @@ fun SettingsScreen(navController: NavController) {
             title = "Change password",
             subtitle = "Change password"
         ) {
-            // Handle navigation to Change Password screen
+            navController.navigate(Routes.EDITPASSWORD)
         }
         SettingItem(
             iconID =  R.drawable.outline_edit_square_24,

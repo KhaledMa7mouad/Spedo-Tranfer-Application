@@ -93,7 +93,7 @@ fun EditProfileScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
         ) {
-            TextField(
+            OutlinedTextField(
                 value = fullName,
                 onValueChange = { fullName = it },
                 modifier = Modifier.fillMaxWidth(0.9f),
@@ -114,7 +114,7 @@ fun EditProfileScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
         ) {
-            TextField(
+            OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
                 modifier = Modifier.fillMaxWidth(0.9f),
@@ -143,7 +143,7 @@ fun EditProfileScreen(navController: NavController) {
                     expanded = !expanded
                 }
             ) {
-                TextField(
+                OutlinedTextField(
                     value = selectedCountry,
                     onValueChange = { selectedCountry = it },
                     label = { Text("Choose a country") },
@@ -195,7 +195,7 @@ fun EditProfileScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
         ) {
-            TextField(
+            OutlinedTextField(
                 value = dateBtn,
                 onValueChange = {},
                 modifier = Modifier.fillMaxWidth(0.9f),
