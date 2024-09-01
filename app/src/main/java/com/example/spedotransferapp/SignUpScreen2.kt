@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -66,14 +67,10 @@ import java.util.Date
 @Composable
 fun SignUpScreen2(
     navController: NavController,
-    fullName: String,
-    email: String,
-    password: String,
     modifier: Modifier = Modifier
 ) {
-    val country = remember { mutableStateOf<String>("") }
-    val mDate = remember { mutableStateOf<String>("") }
-
+    val country = remember { mutableStateOf("") }
+    val mDate = remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -86,7 +83,7 @@ fun SignUpScreen2(
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Localized description"
+                            contentDescription = "Back"
                         )
                     }
                 },
@@ -105,21 +102,17 @@ fun SignUpScreen2(
                 }
             )
         }
-    ) { innerPadding -> SignUp2( country ,mDate )
+    ) { innerPadding ->
+        SignUp2(country, mDate)
     }
 }
 
 @Composable
 fun SignUp2(
-
     country: MutableState<String>,
     mDate: MutableState<String>,
-
 ) {
-    val context = LocalContext.current
     val scrollState = rememberScrollState()
-
-
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -167,15 +160,12 @@ fun SignUp2(
         )
         Spacer(modifier = Modifier.height(20.dp))
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            bottomSheet(country)
+            BottomSheet(country)
             Spacer(modifier = Modifier.height(10.dp))
             DatePickerButton(mDate)
             Spacer(modifier = Modifier.height(40.dp))
             Button(
-                onClick = {
-
-
-                },
+                onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 32.dp),
@@ -211,9 +201,6 @@ fun DatePickerButton(mDate: MutableState<String>) {
     )
 
     Column(
-        modifier = Modifier
-        //.fillMaxSize()
-        ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
@@ -252,12 +239,85 @@ fun DatePickerButton(mDate: MutableState<String>) {
     }
 }
 
-
-@Preview(showBackground = true, showSystemUi = true)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OverAll5() {
-    SignUpScreen2(rememberNavController(), "mohamed", "mohamed.com", "101010")
+fun BottomSheet(selectedCountry: MutableState<String>) {
+    val sheetState = rememberModalBottomSheetState()
+    val scope = rememberCoroutineScope()
+    var showBottomSheet by remember { mutableStateOf(false) }
+
+    Button(
+        onClick = { showBottomSheet = true },
+        modifier = Modifier
+            .height(55.dp)
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp)
+            .border(1.dp, Color.DarkGray, shape = RoundedCornerShape(4.dp))
+            .background(color = Color.White),
+        colors = ButtonDefaults.buttonColors(Color.White),
+    ) {
+        Text(
+            text = if (selectedCountry.value.isNotEmpty()) selectedCountry.value else "Select a Country",
+            color = if (selectedCountry.value.isNotEmpty()) Color.Black else colorResource(id = R.color.Gray_G70),
+            fontSize = 16.sp,
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.Start
+        )
+        Icon(
+            imageVector = Icons.Default.ArrowDropDown,
+            contentDescription = null,
+            tint = Color.DarkGray,
+        )
+    }
+
+    if (showBottomSheet) {
+        ModalBottomSheet(
+            onDismissRequest = {
+                showBottomSheet = false
+            },
+            sheetState = sheetState
+        ) {
+            CountryList(onCountrySelected = {
+                selectedCountry.value = it
+                scope.launch { sheetState.hide() }.invokeOnCompletion {
+                    if (!sheetState.isVisible) {
+                        showBottomSheet = false
+                    }
+                }
+            })
+        }
+    }
 }
+
+@Composable
+fun CountryList(onCountrySelected: (String) -> Unit) {
+    val countries = listOf("US", "UK", "PS")
+    Column {
+        countries.forEach { country ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onCountrySelected(country) }
+                    .padding(16.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.unitedstates_image),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Text(text = country)
+            }
+        }
+    }
+}
+
+@Preview(showSystemUi = true, showBackground = true)
+@Composable
+fun SignUpScreen2Preview() {
+    SignUpScreen2(navController = rememberNavController())
+}
+
 
 
 
