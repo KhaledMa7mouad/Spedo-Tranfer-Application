@@ -1,4 +1,4 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.screens
 
 
 import androidx.compose.foundation.BorderStroke
@@ -15,7 +15,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +33,8 @@ import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.NewGray
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.offred
+import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
 fun ServerError(navController: NavController,modifier: Modifier = Modifier) {

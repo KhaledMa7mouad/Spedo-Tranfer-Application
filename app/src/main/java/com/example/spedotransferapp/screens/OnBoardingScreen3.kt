@@ -1,4 +1,4 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,6 +30,7 @@ import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.NewGray
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.offred
+import com.example.spedotransferapp.R
 
 @Composable
 fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier) {

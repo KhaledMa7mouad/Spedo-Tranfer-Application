@@ -1,6 +1,5 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.screens
 
-import android.graphics.Paint.Align
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,10 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,6 +26,7 @@ import com.example.gittest.ui.theme.DarkWhite
 import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.offred
+import com.example.spedotransferapp.R
 
 @Composable
 fun InternetError(modifier: Modifier = Modifier) {

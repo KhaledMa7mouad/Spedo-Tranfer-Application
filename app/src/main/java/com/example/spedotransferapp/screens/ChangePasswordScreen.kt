@@ -1,6 +1,5 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.screens
 
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,7 +8,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -33,9 +31,8 @@ import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.NewGray3
 import com.example.gittest.ui.theme.offred
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
