@@ -5,9 +5,11 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.*
+import androidx.compose.runtime.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -80,7 +82,7 @@ fun BottomBar(navController: NavController) {
 }
 
 object BottomBarRoutes {
-    val Home = Screen("Home", Icons.Default.Home)
+    val Home = Screen("Home", Icons.Default.Home )
     val Transfer = Screen("Transfer", Icons.Default.Build)
     val Transactions = Screen("Transactions", Icons.Default.AccountCircle)
     val Cards = Screen("Cards", Icons.Default.AccountBox)

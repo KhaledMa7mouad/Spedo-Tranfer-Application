@@ -3,6 +3,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Colors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Notifications
@@ -13,222 +14,164 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.spedotransferapp.R
 
 @Composable
 fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFFFFF8E1), Color(0xFFFBE9E7)
-                    )
-                )
-            )
-            .padding(horizontal = 16.dp)
+            .padding(16.dp)
+            .background(Color(0xFFFFF7F0))
     ) {
         TopSection()
-        BalanceSection()
-        RecentTransactionsSection()
+        Spacer(modifier = Modifier.height(20.dp))
+        BalanceCard()
+        Spacer(modifier = Modifier.height(20.dp))
+        TransactionsSection()
     }
 }
 
 @Composable
-fun TopSection(modifier: Modifier = Modifier) {
-    val user = "Asmaa Dosuky"
+fun TopSection() {
     Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .padding(top = 16.dp)
+        modifier = Modifier
             .fillMaxWidth()
+            .padding(top = 36.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Box(
                 modifier = Modifier
-                    .size(48.dp)
-                    .clip(CircleShape)
-                    .background(Color.Gray.copy(alpha = 0.2f))
+                    .size(50.dp)
+                    .background(Color.LightGray, shape = CircleShape),
+                contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "AD",
-                    fontSize = 20.sp,
-                    color = Color.Gray,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-            Column(
-                modifier = Modifier
-                    .padding(start = 12.dp)
-            ) {
-                Text(
-                    text = "Welcome back,",
+                    text = "AD", // You can replace this with dynamic initials
+                    color = Color.White,
                     fontSize = 16.sp,
-                    color = Color(0xFFD32F2F)
-                )
-                Text(
-                    text = user,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    fontWeight = FontWeight.Bold
                 )
             }
+
+            Spacer(modifier = Modifier.width(8.dp))
+            Column {
+                Text(text = "Welcome back,", color = Color.Red, fontSize = 14.sp)
+                Text(text = "Khaled Mahmoud", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            }
         }
-        IconButton(
-            onClick = { /* TODO: handle notifications */ }
-        ) {
-            Icon(
-                imageVector = Icons.Default.Notifications,
-                contentDescription = "Notification icon",
-                tint = Color.Black
-            )
-        }
+        Icon(
+            imageVector = Icons.Filled.Notifications,
+            contentDescription = "Notifications",
+            tint = Color.Black,
+            modifier = Modifier
+                .size(32.dp)
+                .clickable {  }
+        )
     }
 }
 
 @Composable
-fun BalanceSection(modifier: Modifier = Modifier) {
+fun BalanceCard() {
     Card(
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF880E4F)),
-        modifier = modifier
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFA21830)),
+        modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp)
-            .padding(vertical = 12.dp)
-            .clip(RoundedCornerShape(12.dp)),
-        elevation = CardDefaults.cardElevation(8.dp)
+            .height(128.dp)
     ) {
         Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(16.dp),
+            horizontalAlignment = Alignment.Start
         ) {
             Text(
                 text = "Current Balance",
                 color = Color.White,
-                fontSize = 16.sp,
-                modifier = Modifier.padding(bottom = 8.dp)
+                fontSize = 14.sp,
             )
+            Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = "10000EGP",
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
                 color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 32.sp,
             )
         }
     }
 }
 
 @Composable
-fun RecentTransactionsSection() {
-    Column(
+fun TransactionsSection() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(text = "Recent transactions", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+        Text(
+            text = "View all",
+            color = Color.Gray,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
+    Spacer(modifier = Modifier.height(12.dp))
+
+    LazyColumn(
+        contentPadding = PaddingValues(vertical = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp) // Adds spacing between items
+    ) {
+        items(7) { // Change this to 7 items
+            TransactionItem()
+        }
+    }
+
+}
+
+@Composable
+fun TransactionItem() {
+    Card(
+        shape = RoundedCornerShape(12.dp),
+       colors = CardDefaults.cardColors(containerColor = Color.White),
+       elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
+            .height(100.dp)
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(8.dp)
         ) {
-            Text(
-                text = "Recent transactions",
-                fontSize = 18.sp,
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
+            Image(
+                painter = painterResource(id = R.drawable.baseline_email_24), // Replace with your resource
+                contentDescription = "Card Logo",
+                modifier = Modifier
+                    .size(40.dp)
+                    .background(Color.LightGray, shape = CircleShape)
             )
-            Text(
-                text = "View All",
-                fontSize = 16.sp,
-                color = Color(0xFFD32F2F),
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable {
-                    /**/
-                }
-            )
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-
-        LazyColumn {
-            items(4) {
-                TransactionItem()
-                Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.width(8.dp))
+            Column {
+                Text(text = "Ahmed Mohamed", fontWeight = FontWeight.Bold)
+                Text(text = "Visa · Master Card · 1234", color = Color.Gray, fontSize = 12.sp,fontWeight = FontWeight.SemiBold)
+                Text(text = "Today 11:00 · Received", color = Color.Gray, fontSize = 12.sp)
             }
-        }
-    }
-}
-
-@Composable
-fun TransactionItem(modifier: Modifier = Modifier) {
-    Card(
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF3E0)),
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp)),
-        elevation = CardDefaults.cardElevation(4.dp)
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(12.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clip(CircleShape)
-                        .background(Color(0xFFFF5722)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Email,
-                        contentDescription = "Transaction Icon",
-                        tint = Color.White,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-                Column(
-                    modifier = Modifier.padding(start = 12.dp)
-                ) {
-                    Text(
-                        text = "Ahmed Mohamed",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black
-                    )
-                    Text(
-                        text = "Visa . Master Card . 1234",
-                        fontSize = 14.sp,
-                        color = Color.Gray
-                    )
-                    Text(
-                        text = "Today 11:00 - Received",
-                        fontSize = 14.sp,
-                        color = Color.Gray
-                    )
-                }
-            }
-            Text(
-                text = "500EGP",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFFD32F2F)
-            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(text = "500EGP", fontWeight = FontWeight.Bold, fontSize = 16.sp)
         }
     }
 }
 
 //@Preview(showBackground = true)
 //@Composable
-//fun HomeScreenPreview() {
-//    HomeScreen(navController = NavController(null))
+//fun PreviewBankScreen() {
+//    BankScreen()
 //}
