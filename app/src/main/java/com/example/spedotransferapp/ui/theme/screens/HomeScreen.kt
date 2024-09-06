@@ -28,9 +28,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.R
 
 @Composable
@@ -85,7 +88,7 @@ fun TopSection() {
             tint = Color.Black,
             modifier = Modifier
                 .size(32.dp)
-                .clickable {  }
+                .clickable { }
         )
     }
 }
@@ -98,7 +101,7 @@ fun BalanceCard() {
             containerColor = Color(0xFFA21830)),
         modifier = Modifier
             .fillMaxWidth()
-            .height(128.dp)
+            .height(100.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -156,18 +159,16 @@ fun TransactionItem() {
        elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp)
+            .height(60.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(8.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.baseline_email_24), // Replace with your resource
+                painter = painterResource(id = R.drawable.mastercard), // Replace with your resource
                 contentDescription = "Card Logo",
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(Color.LightGray, shape = CircleShape)
+                Modifier.weight(1f).fillMaxSize()
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
@@ -176,13 +177,13 @@ fun TransactionItem() {
                 Text(text = "Today 11:00 · Received", color = Color.Gray, fontSize = 12.sp)
             }
             Spacer(modifier = Modifier.weight(1f))
-            Text(text = "500EGP", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(text = "500EGP", fontWeight = FontWeight.Bold, fontSize = 16.sp,color= offred)
         }
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun PreviewBankScreen() {
-//    BankScreen()
-//}
+@Preview(showBackground = true)
+@Composable
+fun PreviewBankScreen() {
+    HomeScreen(rememberNavController())
+}
