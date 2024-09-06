@@ -31,6 +31,7 @@ import com.example.gittest.ui.theme.NewGray
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
 fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier) {

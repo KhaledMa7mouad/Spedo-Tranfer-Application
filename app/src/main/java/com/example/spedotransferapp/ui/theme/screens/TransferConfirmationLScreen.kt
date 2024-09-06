@@ -41,7 +41,7 @@ import com.example.spedotransferapp.R
 import com.example.spedotransferapp.navigation.Routes
 
 @Composable
-fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",recipientAccount:String="xxxx2244",navController: NavController,modifier: Modifier = Modifier) {
+fun TransferConfirmationLastScreen(amount:String="24",recipientName:String="mo",recipientAccount:String="xxxx2244",navController: NavController,modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -75,7 +75,7 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
             )
         }
         Image(
-            painter = painterResource(id = R.drawable.transferconfirmation),
+            painter = painterResource(id = R.drawable.transferconfirmationlast),
             contentDescription = "Transfer Amount Screen",
             modifier = Modifier
                 .fillMaxWidth(1f)
@@ -110,8 +110,20 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
                 textAlign = TextAlign.End
             )
         }
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Image(painter = painterResource(
+                id = R.drawable.transferconfirmationlasttt),
+                contentDescription ="",
+                Modifier.size(80.dp)
+                )
+
+        }
         Text(
-            text ="${amount} EGB",
+            text ="Your transfer was successful",
             modifier = Modifier
                 .padding(top = 8.dp, bottom = 8.dp)
                 .fillMaxWidth(),
@@ -119,17 +131,11 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
             fontSize = 20.sp,
             textAlign = TextAlign.Center
 
-            )
-        Text(
-            text ="Transfer amount",
-            modifier = Modifier
-                .padding(top = 4.dp, bottom = 12.dp)
-                .fillMaxWidth(),
-            fontSize = 16.sp,
-            textAlign = TextAlign.Center,
-            color = NewGray3
+        )
 
-            )
+
+        TransferDetails(fromName = "Mohamed Atef", fromAccount = "xxxx2424", toName = recipientName, toAccount =recipientAccount ,R.drawable.baseline_done_24)
+
         Row (
             modifier=Modifier.fillMaxWidth()
         ){
@@ -142,7 +148,7 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
                 color = NewGray3,
 
 
-            )
+                )
             Text(
                 text ="${amount} EGB",
                 modifier = Modifier
@@ -163,7 +169,6 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
                 .padding(bottom = 8.dp)
         )
 
-        TransferDetails(fromName = "Mohamed Atef", fromAccount = "xxxx2424", toName = recipientName, toAccount =recipientAccount ,R.drawable.baseline_swap_vertical_circle_24)
 
 
 
@@ -174,11 +179,11 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 24.dp),
+                .padding(vertical = 12.dp),
             shape = RoundedCornerShape(8.dp)
         ) {
             Text(
-                text = "Confirm",
+                text = "Back to Home",
                 fontSize = 16.sp,
                 modifier = Modifier.padding(vertical = 12.dp)
             )
@@ -193,11 +198,11 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
             border = BorderStroke(2.dp, offred)
         ) {
             Text(
-                text = "Previous",
+                text = "Add to Favourite",
                 fontSize = 16.sp,
                 modifier = Modifier.padding(vertical = 12.dp),
 
-            )
+                )
         }
 
 
@@ -208,111 +213,11 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun TransferConfiramtionPrev() {
-    TransferConfirmationScreen(
+private fun TransferConfiramtionLastPrev() {
+    TransferConfirmationLastScreen(
         amount = "1000",
         recipientName = "Asmaa Desoky",
         recipientAccount = "xxxx2004",
         navController = rememberNavController()
     )
-}
-@Composable
-fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAccount: String, photoid:Int) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.White, shape = RoundedCornerShape(12.dp))
-            .padding(16.dp)
-    ) {
-        // From Section
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
-
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.outline_account_balance_24),
-                contentDescription = "Bank Icon",
-                modifier = Modifier.size(32.dp)
-            )
-            Column(
-                modifier = Modifier.padding(start = 8.dp)
-            ) {
-                Text(
-                    text = "From",
-                    color = offred,
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 12.dp)
-                )
-                Text(
-                    text = fromName,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 12.dp)
-
-                )
-                Text(
-                    text = "Account $fromAccount",
-                    fontSize = 14.sp,
-                    color = Color.Gray
-                )
-            }
-        }
-
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(
-                    Brush.linearGradient(colors = listOf(DarkWhite, LightDarkRed))
-                ),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Icon(
-                painter = painterResource(id = photoid),
-                contentDescription = "Transfer Icon",
-                modifier = Modifier.size(36.dp),
-                tint = Color(0xFFB58F05)
-            )
-        }
-
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.outline_account_balance_24),
-                contentDescription = "Bank Icon",
-                modifier = Modifier.size(32.dp)
-            )
-            Column(
-                modifier = Modifier.padding(start = 8.dp)
-            ) {
-                Text(
-                    text = "To",
-                    color = offred,
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(vertical = 12.dp)
-
-                )
-                Text(
-                    text = toName,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 12.dp)
-
-                )
-                Text(
-                    text = "Account $toAccount",
-                    fontSize = 14.sp,
-                    color = Color.Gray
-                )
-            }
-        }
-    }
 }
