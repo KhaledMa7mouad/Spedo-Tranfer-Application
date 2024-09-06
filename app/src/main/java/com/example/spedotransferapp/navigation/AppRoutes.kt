@@ -16,6 +16,8 @@ import com.example.spedotransferapp.ui.theme.screens.SettingsScreen
 import com.example.spedotransferapp.ui.theme.screens.SignIn
 import com.example.spedotransferapp.ui.theme.screens.Timeout
 import androidx.navigation.navArgument
+import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
+import com.example.spedotransferapp.ui.theme.screens.TransferConfirmationScreen
 
 object Routes{
     const val FIRSTSIGNUP="firstsignup"
