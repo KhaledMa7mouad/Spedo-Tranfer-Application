@@ -1,4 +1,4 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -6,7 +6,18 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.spedotransferapp.ui.theme.screens.EditPasswordScreen
+import com.example.spedotransferapp.ui.theme.screens.EditProfileScreen
+import com.example.spedotransferapp.ui.theme.screens.OnBoardingScreen1
+import com.example.spedotransferapp.ui.theme.screens.OnBoardingScreen2
+import com.example.spedotransferapp.ui.theme.screens.OnBoardingScreen3
+import com.example.spedotransferapp.ui.theme.screens.SecondScreen
+import com.example.spedotransferapp.ui.theme.screens.SettingsScreen
+import com.example.spedotransferapp.ui.theme.screens.SignIn
+import com.example.spedotransferapp.ui.theme.screens.Timeout
 import androidx.navigation.navArgument
+import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
+import com.example.spedotransferapp.ui.theme.screens.TransferConfirmationScreen
 
 object Routes{
     const val FIRSTSIGNUP="firstsignup"
@@ -28,7 +39,7 @@ fun AppNavHost(modifier: Modifier = Modifier) {
     val navController= rememberNavController()
     NavHost(
         navController = navController,
-        startDestination =Routes.FIRSTSIGNUP
+        startDestination = Routes.FIRSTSIGNUP
     )
     {
 

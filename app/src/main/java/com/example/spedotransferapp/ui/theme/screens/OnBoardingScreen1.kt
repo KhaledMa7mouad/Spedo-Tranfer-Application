@@ -1,4 +1,4 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.ui.theme.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,9 +30,11 @@ import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.NewGray
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.offred
+import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
-fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier) {
+fun OnBoardingScreen1(navController: NavController,modifier: Modifier = Modifier) {
     Column (
         modifier= Modifier
             .fillMaxSize()
@@ -46,7 +48,7 @@ fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier
             horizontalAlignment = Alignment.End,
             modifier = Modifier.fillMaxWidth()
         ){
-            TextButton(onClick = { /*TODO*/ }) {
+            TextButton(onClick = { navController.navigate(Routes.EDITPROFILE) }) {
                 Text(
                     text = "Skip",
                     fontSize = 16.sp,
@@ -65,10 +67,10 @@ fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier
                 .padding(top = 24.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.onbordingpagethree),
+                painter = painterResource(id = R.drawable.onbordingpageoneone),
                 contentDescription ="",
                 modifier=Modifier.fillMaxSize()
-            )
+                )
         }
         Column(
             verticalArrangement = Arrangement.Center,
@@ -79,10 +81,10 @@ fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier
                 .padding(top = 24.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.frameonboardingthree),
+                painter = painterResource(id = R.drawable.frameonboardingone),
                 contentDescription ="",
                 modifier=Modifier.fillMaxSize()
-            )
+                )
         }
         Column(
             verticalArrangement = Arrangement.Center,
@@ -93,7 +95,7 @@ fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier
 
         ) {
             Text(
-                text = "Payment",
+                text = "Amont",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.W500,
                 color = NewGray2,
@@ -102,14 +104,14 @@ fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier
 
             )
             Text(
-                text = "Enjoy peace of mind with our secure platform Transfer funds instantly to friends.",
+                text = "Send money fast with simple steps. Create account, Confirmation, Payment. Simple.",
                 color = NewGray,
                 textAlign = TextAlign.Center,
                 fontSize = 16.sp,
-                modifier = Modifier.padding(top=24.dp, start = 4.dp, end = 4.dp)
-            )
+                modifier = Modifier.padding(top=24.dp)
+                )
             Button(
-                onClick = { navController.navigate(Routes.TRANSFERAMOUNT) },
+                onClick = { navController.navigate(Routes.ONBOARDINGTWO) },
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .padding(top = 24.dp),
@@ -117,11 +119,11 @@ fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier
                 colors = androidx.compose.material3.ButtonDefaults.buttonColors(
                     containerColor = offred
                 )
-            ) {
+                ) {
                 Text(
                     text = "Next",
                     color = Color.White,
-                )
+                    )
             }
 
         }
@@ -132,6 +134,6 @@ fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-private fun OnBoardingScreen3Preview() {
-    OnBoardingScreen3(rememberNavController())
+private fun OnBoardingScreen1Preview() {
+    OnBoardingScreen1(rememberNavController())
 }
