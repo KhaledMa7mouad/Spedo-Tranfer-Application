@@ -2,9 +2,11 @@ package com.example.spedotransferapp
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 
 object Routes{
     const val FIRSTSIGNUP="firstsignup"
@@ -16,6 +18,9 @@ object Routes{
     const val SETTINGS="settings"
     const val EDITPROFILE="editprofile"
     const val EDITPASSWORD="editpassword"
+    const val TRANSFERAMOUNT="transferamount"
+    const val TRANSFERCONFIRMATION = "transferconfirmation/{amount}/{name}/{account}"
+
 }
 
 @Composable
@@ -53,6 +58,27 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         }
         composable(route = Routes.EDITPASSWORD){
             EditPasswordScreen(navController)
+        }
+        composable(route = Routes.TRANSFERAMOUNT){
+            TransfareAmountScreen(navController)
+        }
+        composable(
+            route = Routes.TRANSFERCONFIRMATION,
+            arguments = listOf(
+                navArgument("name") { type = NavType.StringType },
+                navArgument("amount") { type = NavType.StringType },
+                navArgument("account") { type = NavType.StringType }
+            )
+        ) {
+            val name = it.arguments?.getString("name")!!
+            val amount = it.arguments?.getString("amount")!!
+            val account = it.arguments?.getString("account")!!
+            TransferConfirmationScreen(
+                amount = amount,
+                recipientName = name,
+                recipientAccount = account,
+                navController = navController
+            )
         }
     }
 
