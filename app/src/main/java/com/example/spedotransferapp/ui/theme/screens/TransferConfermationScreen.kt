@@ -38,6 +38,7 @@ import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.NewGray3
 import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
 fun TransferConfirmationScreen(amount:String,recipientName:String,recipientAccount:String,navController: NavController,modifier: Modifier = Modifier) {
