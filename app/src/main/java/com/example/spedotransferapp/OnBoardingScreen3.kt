@@ -109,7 +109,7 @@ fun OnBoardingScreen3(navController: NavController,modifier: Modifier = Modifier
                 modifier = Modifier.padding(top=24.dp, start = 4.dp, end = 4.dp)
             )
             Button(
-                onClick = {  },
+                onClick = { navController.navigate(Routes.TRANSFERAMOUNT) },
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .padding(top = 24.dp),
