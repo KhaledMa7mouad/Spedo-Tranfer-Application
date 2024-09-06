@@ -5,15 +5,15 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.spedotransferapp.screens.EditPasswordScreen
-import com.example.spedotransferapp.screens.EditProfileScreen
-import com.example.spedotransferapp.screens.OnBoardingScreen1
-import com.example.spedotransferapp.screens.OnBoardingScreen2
-import com.example.spedotransferapp.screens.OnBoardingScreen3
-import com.example.spedotransferapp.screens.SecondScreen
-import com.example.spedotransferapp.screens.SettingsScreen
-import com.example.spedotransferapp.screens.SignIn
-import com.example.spedotransferapp.screens.Timeout
+import com.example.spedotransferapp.ui.theme.screens.EditPasswordScreen
+import com.example.spedotransferapp.ui.theme.screens.EditProfileScreen
+import com.example.spedotransferapp.ui.theme.screens.OnBoardingScreen1
+import com.example.spedotransferapp.ui.theme.screens.OnBoardingScreen2
+import com.example.spedotransferapp.ui.theme.screens.OnBoardingScreen3
+import com.example.spedotransferapp.ui.theme.screens.SecondScreen
+import com.example.spedotransferapp.ui.theme.screens.SettingsScreen
+import com.example.spedotransferapp.ui.theme.screens.SignIn
+import com.example.spedotransferapp.ui.theme.screens.Timeout
 
 object Routes{
     const val FIRSTSIGNUP="firstsignup"

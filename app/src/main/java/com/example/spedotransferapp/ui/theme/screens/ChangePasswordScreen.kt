@@ -1,4 +1,4 @@
-package com.example.spedotransferapp.screens
+package com.example.spedotransferapp.ui.theme.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

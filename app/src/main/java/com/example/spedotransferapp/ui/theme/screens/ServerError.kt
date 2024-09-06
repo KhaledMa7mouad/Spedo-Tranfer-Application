@@ -1,6 +1,7 @@
-package com.example.spedotransferapp.screens
+package com.example.spedotransferapp.ui.theme.screens
 
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,8 +12,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,7 +37,7 @@ import com.example.spedotransferapp.R
 import com.example.spedotransferapp.navigation.Routes
 
 @Composable
-fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier) {
+fun ServerError(navController: NavController,modifier: Modifier = Modifier) {
     Column (
         modifier= Modifier
             .fillMaxSize()
@@ -44,60 +46,33 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
             )
             .padding(top = 24.dp)
     ){
-        Column (
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.End,
-            modifier = Modifier.fillMaxWidth()
-        ){
-            TextButton(onClick = { /*TODO*/ }) {
-                Text(
-                    text = "Skip",
-                    fontSize = 16.sp,
-                    color = NewGray2,
-                    modifier = Modifier.padding(end = 12.dp,top=16.dp)
-                )
-            }
 
-        }
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.55f)
-                .padding(top = 24.dp)
+                .padding(top=68.dp, start = 40.dp,end=40.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.onbordingpagetwotwo),
+                painter = painterResource(id = R.drawable.servererror),
                 contentDescription ="",
                 modifier=Modifier.fillMaxSize()
             )
         }
+
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.11f)
-                .padding(top = 24.dp)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.frameonboardintwo),
-                contentDescription ="",
-                modifier=Modifier.fillMaxSize()
-            )
-        }
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp)
+                .padding(top = 12.dp)
 
         ) {
             Text(
-                text = "Confirmation",
-                fontSize = 24.sp,
+                text = "Server error...",
+                fontSize = 28.sp,
                 fontWeight = FontWeight.W500,
                 color = NewGray2,
                 textAlign = TextAlign.Center,
@@ -105,10 +80,10 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
 
             )
             Text(
-                text="Transfer funds instantly to friends and family worldwide, strong shield protecting a money.",
+                text="It seems like we’re haveing some diffculities , please don’t leave your aspirations, we are sending for help",
                 color = NewGray,
                 textAlign = TextAlign.Center,
-                fontSize = 16.sp,
+                fontSize = 18.sp,
                 modifier = Modifier.padding(top=24.dp)
             )
             Button(
@@ -122,8 +97,28 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
                 )
             ) {
                 Text(
-                    text = "Next",
+                    text = "Call Us",
                     color = Color.White,
+                    modifier = Modifier.padding(vertical = 8.dp),
+                    fontSize = 16.sp
+                )
+            }
+            OutlinedButton(
+                onClick = { navController.navigate(Routes.ONBOARDINGTHREE) },
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .padding(top = 24.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = offred
+                ),
+                border = BorderStroke(2.dp, offred)
+
+            ) {
+                Text(
+                    text = "Message Us",
+                    modifier = Modifier.padding(vertical = 8.dp),
+                    fontSize = 16.sp
                 )
             }
 
@@ -135,6 +130,6 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-private fun OnBoardingScreen2Preview() {
-    OnBoardingScreen2(rememberNavController())
+private fun ServerErrorPreview() {
+    ServerError(rememberNavController())
 }

@@ -1,4 +1,4 @@
-package com.example.spedotransferapp.screens
+package com.example.spedotransferapp.ui.theme.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
