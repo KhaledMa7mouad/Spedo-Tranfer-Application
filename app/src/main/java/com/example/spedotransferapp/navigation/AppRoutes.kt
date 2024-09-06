@@ -30,7 +30,7 @@ object Routes{
     const val EDITPROFILE="editprofile"
     const val EDITPASSWORD="editpassword"
     const val TRANSFERAMOUNT="transferamount"
-    const val TRANSFERCONFIRMATION = "transferconfirmation/{amount}/{name}/{account}"
+    const val TRANSFERCONFIRMATION = "transferconfirmation"
 
 }
 
@@ -74,23 +74,25 @@ fun AppNavHost(modifier: Modifier = Modifier) {
             TransfareAmountScreen(navController)
         }
         composable(
-            route = Routes.TRANSFERCONFIRMATION,
+            route = "${Routes.TRANSFERCONFIRMATION}/{amount}/{recipientName}/{recipientAccount}",
             arguments = listOf(
-                navArgument("name") { type = NavType.StringType },
                 navArgument("amount") { type = NavType.StringType },
-                navArgument("account") { type = NavType.StringType }
+                navArgument("recipientName") { type = NavType.StringType },
+                navArgument("recipientAccount") { type = NavType.StringType }
             )
         ) {
-            val name = it.arguments?.getString("name")!!
             val amount = it.arguments?.getString("amount")!!
-            val account = it.arguments?.getString("account")!!
+            val recipientName = it.arguments?.getString("recipientName")!!
+            val recipientAccount = it.arguments?.getString("recipientAccount")!!
+
             TransferConfirmationScreen(
                 amount = amount,
-                recipientName = name,
-                recipientAccount = account,
+                recipientName = recipientName,
+                recipientAccount = recipientAccount,
                 navController = navController
             )
         }
+
     }
 
 }
