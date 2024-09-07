@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.spedotransferapp.ui.theme.screens.TransactionsScreen
 import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
 
 @Composable
@@ -31,7 +32,7 @@ fun MainScreenScaffold() {
         NavHost(navController = navController, startDestination = BottomBarRoutes.Home.route, Modifier.padding(paddingValues)) {
             composable(BottomBarRoutes.Home.route) { HomeScreen(navController) }
             composable(BottomBarRoutes.Transfer.route) { TransfareAmountScreen(navController) }
-            composable(BottomBarRoutes.Transactions.route) { /* Transactions Screen Content */ }
+            composable(BottomBarRoutes.Transactions.route) { TransactionsScreen(navController) }
             composable(BottomBarRoutes.Cards.route) { /* Cards Screen Content */ }
             composable(BottomBarRoutes.More.route) { /* More Screen Content */ }
         }
