@@ -1,4 +1,4 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.ui.theme.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,7 +18,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,13 +34,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.DarkWhite
 import com.example.gittest.ui.theme.LightDarkRed
-import com.example.gittest.ui.theme.NewGray
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.NewGray3
 import com.example.gittest.ui.theme.offred
+import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
-fun TransferConfirmationScreen(amount:String,recipientName:String,recipientAccount:String,navController: NavController,modifier: Modifier = Modifier) {
+fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",recipientAccount:String="xxxx2244",navController: NavController,modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -164,7 +163,7 @@ fun TransferConfirmationScreen(amount:String,recipientName:String,recipientAccou
                 .padding(bottom = 8.dp)
         )
 
-        TransferDetails(fromName = "Mohamed Atef", fromAccount = "xxxx2424", toName = recipientName, toAccount =recipientAccount )
+        TransferDetails(fromName = "Mohamed Atef", fromAccount = "xxxx2424", toName = recipientName, toAccount =recipientAccount ,R.drawable.baseline_swap_vertical_circle_24)
 
 
 
@@ -218,7 +217,7 @@ private fun TransferConfiramtionPrev() {
     )
 }
 @Composable
-fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAccount: String) {
+fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAccount: String, photoid:Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -273,7 +272,7 @@ fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAcc
             horizontalArrangement = Arrangement.Center
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.baseline_swap_vertical_circle_24),
+                painter = painterResource(id = photoid),
                 contentDescription = "Transfer Icon",
                 modifier = Modifier.size(36.dp),
                 tint = Color(0xFFB58F05)

@@ -1,5 +1,4 @@
-package com.example.spedotransferapp
-
+package com.example.spedotransferapp.ui.theme.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -31,9 +30,11 @@ import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.NewGray
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.offred
+import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
-fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier) {
+fun OnBoardingScreen3(navController: NavController,onOnboardingComplete: () -> Unit,modifier: Modifier = Modifier) {
     Column (
         modifier= Modifier
             .fillMaxSize()
@@ -47,7 +48,7 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
             horizontalAlignment = Alignment.End,
             modifier = Modifier.fillMaxWidth()
         ){
-            TextButton(onClick = { /*TODO*/ }) {
+            TextButton(onClick = { onOnboardingComplete() }) {
                 Text(
                     text = "Skip",
                     fontSize = 16.sp,
@@ -66,7 +67,7 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
                 .padding(top = 24.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.onbordingpagetwotwo),
+                painter = painterResource(id = R.drawable.onbordingpagethree),
                 contentDescription ="",
                 modifier=Modifier.fillMaxSize()
             )
@@ -80,7 +81,7 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
                 .padding(top = 24.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.frameonboardintwo),
+                painter = painterResource(id = R.drawable.frameonboardingthree),
                 contentDescription ="",
                 modifier=Modifier.fillMaxSize()
             )
@@ -94,7 +95,7 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
 
         ) {
             Text(
-                text = "Confirmation",
+                text = "Payment",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.W500,
                 color = NewGray2,
@@ -103,14 +104,14 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
 
             )
             Text(
-                text="Transfer funds instantly to friends and family worldwide, strong shield protecting a money.",
+                text = "Enjoy peace of mind with our secure platform Transfer funds instantly to friends.",
                 color = NewGray,
                 textAlign = TextAlign.Center,
                 fontSize = 16.sp,
-                modifier = Modifier.padding(top=24.dp)
+                modifier = Modifier.padding(top=24.dp, start = 4.dp, end = 4.dp)
             )
             Button(
-                onClick = { navController.navigate(Routes.ONBOARDINGTHREE) },
+                onClick = { onOnboardingComplete() },
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .padding(top = 24.dp),
@@ -133,6 +134,6 @@ fun OnBoardingScreen2(navController: NavController,modifier: Modifier = Modifier
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-private fun OnBoardingScreen2Preview() {
-    OnBoardingScreen2(rememberNavController())
+private fun OnBoardingScreen3Preview() {
+    OnBoardingScreen3(rememberNavController(),{})
 }

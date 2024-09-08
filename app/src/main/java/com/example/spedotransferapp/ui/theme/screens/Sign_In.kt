@@ -1,4 +1,4 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.ui.theme.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -17,7 +16,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -47,6 +45,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.DarkWhite
 import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.offred
+import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -155,7 +155,7 @@ fun SignIn(navController: NavController, modifier: Modifier = Modifier) {
             )
 
         Button(
-            onClick = { navController.navigate(Routes.ONBOARDINGONE)},
+            onClick = { navController.navigate(Routes.TRANSFERAMOUNT)},
             modifier = Modifier
                 .fillMaxWidth(0.95f)
                 .height(88.dp)

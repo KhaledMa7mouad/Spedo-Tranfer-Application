@@ -1,5 +1,6 @@
-package com.example.spedotransferapp
+package com.example.spedotransferapp.ui.theme.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -44,6 +45,8 @@ import com.example.gittest.ui.theme.DarkWhite
 import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.NewGray2
 import com.example.gittest.ui.theme.offred
+import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,11 +69,11 @@ fun TransfareAmountScreen(navController: NavController) {
             .background(
                 Brush.linearGradient(colors = listOf(DarkWhite, LightDarkRed))
             )
-            .padding(horizontal = 12.dp)
+            .padding(horizontal = 4.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(bottom = 32.dp, top = 44.dp)
+            modifier = Modifier.padding(bottom = 16.dp, top = 20.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.outline_arrow_back_ios_new_24),
@@ -130,7 +133,7 @@ fun TransfareAmountScreen(navController: NavController) {
         }
         Text(
             text ="How much are you sending?",
-            modifier = Modifier.padding(top=8.dp, bottom = 32.dp),
+            modifier = Modifier.padding(top=8.dp, bottom = 16.dp),
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp,
 
@@ -153,14 +156,14 @@ fun TransfareAmountScreen(navController: NavController) {
                 onValueChange = {amount=it},
                 modifier = Modifier
                     .fillMaxWidth(0.98f)
-                    .padding(bottom = 24.dp, top = 16.dp),
+                    .padding(bottom = 12.dp, top = 16.dp),
                 shape = RoundedCornerShape(8.dp)
             )
         }
         Row (
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 32.dp)
+                .padding(top = 16.dp)
         ){
             Text(
                 text ="Recipient Information",
@@ -216,7 +219,7 @@ fun TransfareAmountScreen(navController: NavController) {
             onValueChange = {recipientName=it},
             modifier = Modifier
                 .fillMaxWidth(0.98f)
-                .padding(bottom = 24.dp, top = 16.dp),
+                .padding(bottom = 12.dp, top = 8.dp),
             shape = RoundedCornerShape(8.dp),
             label = {
                 Text(text = "Enter Recipient Name")
@@ -232,7 +235,7 @@ fun TransfareAmountScreen(navController: NavController) {
             onValueChange = {recipientAccount=it},
             modifier = Modifier
                 .fillMaxWidth(0.98f)
-                .padding(bottom = 24.dp, top = 16.dp),
+                .padding(bottom = 12.dp, top = 4.dp),
             shape = RoundedCornerShape(8.dp),
             label = {
                 Text(text = "Enter Percipient Account Number")
@@ -240,8 +243,11 @@ fun TransfareAmountScreen(navController: NavController) {
         )
         Button(
             onClick = {
+                Log.d("trace", "Navigating with amount: $amount, name: $recipientName, account: $recipientAccount")
+
                 navController.navigate(
-                    "transferconfirmation/${amount}/${recipientName}/${recipientAccount}"
+
+                    "${Routes.TRANSFERCONFIRMATION}/${amount}/${recipientName}/${recipientAccount}"
                 )
                       },
             colors = ButtonDefaults.buttonColors(
