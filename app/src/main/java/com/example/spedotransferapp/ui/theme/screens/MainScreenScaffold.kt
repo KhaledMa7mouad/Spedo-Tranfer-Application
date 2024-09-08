@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -25,6 +26,9 @@ import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
 @Composable
 fun MainScreenScaffold() {
     val navController = rememberNavController()
+
+
+
 
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
@@ -86,10 +90,16 @@ fun BottomBar(navController: NavController) {
 
 object BottomBarRoutes {
     val Home = Screen("Home", Icons.Default.Home )
-    val Transfer = Screen("Transfer", Icons.Default.Build)
-    val Transactions = Screen("Transactions", Icons.Default.AccountCircle)
-    val Cards = Screen("Cards", Icons.Default.AccountBox)
-    val More = Screen("More", Icons.Default.Add)
+    val Transfer = Screen("Transfer", Icons.Default.CheckCircle)
+    val Transactions = Screen("Transactions", Icons.Default.Refresh)
+    val Cards = Screen("Cards", Icons.Default.Person)
+    val More = Screen("More", Icons.Default.MoreVert)
 
     data class Screen(val route: String, val icon: ImageVector, val title: String = route)
+}
+
+@Preview
+@Composable
+private fun MainScreenScaffoldPrev() {
+    MainScreenScaffold()
 }
