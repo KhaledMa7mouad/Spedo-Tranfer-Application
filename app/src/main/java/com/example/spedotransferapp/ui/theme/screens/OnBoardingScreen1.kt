@@ -34,7 +34,7 @@ import com.example.spedotransferapp.R
 import com.example.spedotransferapp.navigation.Routes
 
 @Composable
-fun OnBoardingScreen1(navController: NavController,modifier: Modifier = Modifier) {
+fun OnBoardingScreen1(navController: NavController,onOnboardingComplete: () -> Unit,modifier: Modifier = Modifier) {
     Column (
         modifier= Modifier
             .fillMaxSize()
@@ -48,7 +48,7 @@ fun OnBoardingScreen1(navController: NavController,modifier: Modifier = Modifier
             horizontalAlignment = Alignment.End,
             modifier = Modifier.fillMaxWidth()
         ){
-            TextButton(onClick = { navController.navigate(Routes.EDITPROFILE) }) {
+            TextButton(onClick = { onOnboardingComplete() }) {
                 Text(
                     text = "Skip",
                     fontSize = 16.sp,
@@ -111,7 +111,7 @@ fun OnBoardingScreen1(navController: NavController,modifier: Modifier = Modifier
                 modifier = Modifier.padding(top=24.dp)
                 )
             Button(
-                onClick = { navController.navigate(Routes.ONBOARDINGTWO) },
+                onClick = { navController.navigate("onboarding2") },
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .padding(top = 24.dp),
@@ -135,5 +135,5 @@ fun OnBoardingScreen1(navController: NavController,modifier: Modifier = Modifier
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 private fun OnBoardingScreen1Preview() {
-    OnBoardingScreen1(rememberNavController())
+    OnBoardingScreen1(rememberNavController(),{})
 }

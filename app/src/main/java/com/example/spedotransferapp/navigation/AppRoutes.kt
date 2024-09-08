@@ -51,15 +51,7 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         composable(route = Routes.SIGNIN){
             SignIn(navController)
         }
-        composable(route = Routes.ONBOARDINGONE){
-            OnBoardingScreen1(navController)
-        }
-        composable(route = Routes.ONBOARDINGTWO){
-            OnBoardingScreen2(navController)
-        }
-        composable(route = Routes.ONBOARDINGTHREE){
-            OnBoardingScreen3(navController)
-        }
+
         composable(route = Routes.TIMEOUT){
             Timeout(navController)
         }

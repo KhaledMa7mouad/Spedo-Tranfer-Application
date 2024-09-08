@@ -155,7 +155,7 @@ fun SignIn(navController: NavController, modifier: Modifier = Modifier) {
             )
 
         Button(
-            onClick = { navController.navigate(Routes.ONBOARDINGONE)},
+            onClick = { navController.navigate(Routes.TRANSFERAMOUNT)},
             modifier = Modifier
                 .fillMaxWidth(0.95f)
                 .height(88.dp)

@@ -145,5 +145,5 @@ fun MyAppNavHost(navController: NavController) {
 @Composable
 fun ContactOptionsPreview() {
     val navController = rememberNavController()
-    MoreScreen(navController = navController)
+    HelpScreen()
 }
