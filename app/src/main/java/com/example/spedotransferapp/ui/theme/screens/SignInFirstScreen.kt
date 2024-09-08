@@ -44,31 +44,22 @@ import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.navigation.Routes
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SecondScreen(navController: NavController,modifier: Modifier = Modifier) {
+fun SecondScreen(navController: NavController, modifier: Modifier = Modifier) {
     var isPasswordVisible by remember { mutableStateOf(false) }
     var isConfirmPasswordVisible by remember { mutableStateOf(false) }
 
-    var fullName by remember {
-        mutableStateOf("")
-    }
-    var email by remember {
-        mutableStateOf("")
-    }
-    var password by remember {
-        mutableStateOf("")
-    }
-    var confirmPassword by remember {
-        mutableStateOf("")
-    }
+    var fullName by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+    var passwordError by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.linearGradient(colors = listOf(DarkWhite, LightDarkRed))
-            )
+            .background(Brush.linearGradient(colors = listOf(DarkWhite, LightDarkRed)))
             .padding(top = 32.dp)
     ) {
         Column(
@@ -78,11 +69,7 @@ fun SecondScreen(navController: NavController,modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(top = 8.dp)
         ) {
-            Text(
-                text = "Sign Up",
-                color = Color.Black,
-                fontSize = 24.sp,
-            )
+            Text(text = "Sign Up", color = Color.Black, fontSize = 24.sp)
             Text(
                 text = "Speedo Transfer",
                 color = Color.Black,
@@ -91,98 +78,56 @@ fun SecondScreen(navController: NavController,modifier: Modifier = Modifier) {
             )
         }
         Column {
-            Text(
-                text = "Full Name",
-                color = Color.Black,
-                fontSize = 20.sp,
-                modifier = Modifier.padding(start=16.dp, bottom = 8.dp,top=8.dp)
-
-            )
+            Text(text = "Full Name", color = Color.Black, fontSize = 20.sp, modifier = Modifier.padding(start = 16.dp, bottom = 8.dp, top = 8.dp))
             OutlinedTextField(
                 value = fullName,
-                onValueChange = {
-                    fullName = it
-                },
-                label = {
-                    Text(text = "Enter your Full Name",color= Color.Gray)
-                },
+                onValueChange = { fullName = it },
+                label = { Text(text = "Enter your Full Name", color = Color.Gray) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(
-                        horizontal = 16.dp
-                    ),
+                    .padding(horizontal = 16.dp),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedTextColor = Color.Black, // Set the text color here
+                    focusedTextColor = Color.Black,
                     unfocusedBorderColor = Color.Gray,
                     focusedBorderColor = Color.Black
                 ),
                 trailingIcon = {
-                    Icon(painter = painterResource(id = R.drawable.fullname_24), contentDescription ="" )
+                    Icon(painter = painterResource(id = R.drawable.fullname_24), contentDescription = "")
                 }
-
             )
-            Text(
-                text = "Email",
-                color = Color.Black,
-                fontSize = 20.sp,
-                modifier = Modifier.padding(start=16.dp, bottom = 8.dp,top=8.dp)
-
-            )
+            Text(text = "Email", color = Color.Black, fontSize = 20.sp, modifier = Modifier.padding(start = 16.dp, bottom = 8.dp, top = 8.dp))
             OutlinedTextField(
                 value = email,
-                onValueChange = {
-                    email = it
-                },
-                label = {
-                    Text(text = "Enter your Email",color= Color.Gray)
-                },
+                onValueChange = { email = it },
+                label = { Text(text = "Enter your Email", color = Color.Gray) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(
-                        horizontal = 16.dp
-                    ),
+                    .padding(horizontal = 16.dp),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedTextColor = Color.Black, // Set the text color here
+                    focusedTextColor = Color.Black,
                     unfocusedBorderColor = Color.Gray,
                     focusedBorderColor = Color.Black
                 ),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Email
-                ),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 trailingIcon = {
-                    Icon(painter = painterResource(id = R.drawable.outline_email_24), contentDescription ="" )
+                    Icon(painter = painterResource(id = R.drawable.outline_email_24), contentDescription = "")
                 }
-
             )
-            Text(
-                text = "Password",
-                color = Color.Black,
-                fontSize = 20.sp,
-                modifier = Modifier.padding(start=16.dp, bottom = 8.dp,top=8.dp)
-
-            )
+            Text(text = "Password", color = Color.Black, fontSize = 20.sp, modifier = Modifier.padding(start = 16.dp, bottom = 8.dp, top = 8.dp))
             OutlinedTextField(
                 value = password,
-                onValueChange = {
-                    password = it
-                },
-                label = {
-                    Text(text = "Enter your Password",color= Color.Gray)
-                },
+                onValueChange = { password = it },
+                label = { Text(text = "Enter your Password", color = Color.Gray) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(
-                        horizontal = 12.dp
-                    ),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType= KeyboardType.Password
-                ),
+                    .padding(horizontal = 16.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedTextColor = Color.Black, // Set the text color here
+                    focusedTextColor = Color.Black,
                     unfocusedBorderColor = Color.Gray,
                     focusedBorderColor = Color.Black
                 ),
-                visualTransformation = if(isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     val icon = if (isPasswordVisible) {
                         R.drawable.outline_visibility_off_24
@@ -192,39 +137,36 @@ fun SecondScreen(navController: NavController,modifier: Modifier = Modifier) {
                     IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
                         Icon(painter = painterResource(id = icon), contentDescription = null)
                     }
-                }
-
-
+                },
+                isError = passwordError
             )
+            if (passwordError) {
+                Text(
+                    text = "Password must be at least 6 characters with 1 uppercase, 1 lowercase, and 1 special character.",
+                    color = Color.Red,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+                )
+            }
             Text(
                 text = "Confirm Password",
                 color = Color.Black,
                 fontSize = 20.sp,
-                modifier = Modifier.padding(start=16.dp, bottom = 8.dp,top=8.dp)
-
+                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp, top = 8.dp)
             )
             OutlinedTextField(
                 value = confirmPassword,
-                onValueChange = {
-                    confirmPassword = it
-                },
-                label = {
-                    Text(text = "Enter your Full Name",color= Color.Gray)
-                },
+                onValueChange = { confirmPassword = it },
+                label = { Text(text = "Confirm your Password", color = Color.Gray) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(
-                        horizontal = 16.dp
-                    ),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType= KeyboardType.Password
-                ),
+                    .padding(horizontal = 16.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedTextColor = Color.Black, // Set the text color here
+                    focusedTextColor = Color.Black,
                     unfocusedBorderColor = Color.Gray,
                     focusedBorderColor = Color.Black
                 ),
-                visualTransformation = if(isConfirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                visualTransformation = if (isConfirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     val icon = if (isConfirmPasswordVisible) {
                         R.drawable.outline_visibility_off_24
@@ -235,7 +177,6 @@ fun SecondScreen(navController: NavController,modifier: Modifier = Modifier) {
                         Icon(painter = painterResource(id = icon), contentDescription = null)
                     }
                 }
-
             )
             Column(
                 modifier = Modifier
@@ -245,43 +186,44 @@ fun SecondScreen(navController: NavController,modifier: Modifier = Modifier) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        passwordError = !isValidPassword(password) // Validate password on sign-up
+                        if (!passwordError) {
+                            // Navigate to next screen or perform sign-up logic
+                        }
+                    },
                     shape = RoundedCornerShape(8.dp),
                     modifier = modifier.fillMaxWidth(0.9f),
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = Color.White,
-                        containerColor = offred
-                    ),
-                    contentPadding = PaddingValues(top=12.dp, bottom = 12.dp)
-
+                    colors = ButtonDefaults.buttonColors(contentColor = Color.White, containerColor = offred),
+                    contentPadding = PaddingValues(top = 12.dp, bottom = 12.dp)
                 ) {
                     Text(text = "Sign up", fontSize = 16.sp)
                 }
             }
-            Row (
+            Row(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .padding(top = 8.dp)
                     .fillMaxWidth()
-            ){
-                Text(text = "Already have an account?",color= Color.Gray)
+            ) {
+                Text(text = "Already have an account?", color = Color.Gray)
                 TextButton(onClick = { navController.navigate(Routes.SIGNIN) }) {
-                    Text(
-                        text = "Sign In",
-                        color = offred,
-                        textDecoration = TextDecoration.Underline
-                    )
+                    Text(text = "Sign In", color = offred, textDecoration = TextDecoration.Underline)
                 }
             }
-
-
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+// Function to validate password
+fun isValidPassword(password: String): Boolean {
+    val passwordPattern = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}\$")
+    return passwordPattern.matches(password)
+}
+
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
-private fun Preview() {
-    SecondScreen(rememberNavController())
+private fun prev() {
+    SecondScreen(navController = rememberNavController())
 }
