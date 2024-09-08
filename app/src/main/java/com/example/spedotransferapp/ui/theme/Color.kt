@@ -16,3 +16,5 @@ val NewGray=Color(0xFF3C3A37)
 val NewGray2=Color(0xFF24221E)
 val NewGray3=Color(0xFF3B3936)
 val LightBlue=Color(0xFFF3E9EB)
+val DarkGreen =Color(0xFF056F31)
+

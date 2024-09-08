@@ -101,7 +101,7 @@ fun BalanceCard() {
             containerColor = Color(0xFFA21830)),
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp)
+            .height(128.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -159,7 +159,7 @@ fun TransactionItem() {
        elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .height(60.dp)
+            .height(84.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -168,7 +168,7 @@ fun TransactionItem() {
             Image(
                 painter = painterResource(id = R.drawable.mastercard), // Replace with your resource
                 contentDescription = "Card Logo",
-                Modifier.weight(1f).fillMaxSize()
+                Modifier.weight(0.5f).fillMaxSize()
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {

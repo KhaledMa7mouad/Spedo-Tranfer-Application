@@ -16,6 +16,7 @@ import com.example.spedotransferapp.ui.theme.screens.SettingsScreen
 import com.example.spedotransferapp.ui.theme.screens.SignIn
 import com.example.spedotransferapp.ui.theme.screens.Timeout
 import androidx.navigation.navArgument
+
 import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
 import com.example.spedotransferapp.ui.theme.screens.TransferConfirmationScreen
 
@@ -31,6 +32,7 @@ object Routes{
     const val EDITPASSWORD="editpassword"
     const val TRANSFERAMOUNT="transferamount"
     const val TRANSFERCONFIRMATION = "transferconfirmation"
+    const val SUCCESSFULTRANSACTION = "successfultransaction"
 
 }
 
@@ -92,6 +94,12 @@ fun AppNavHost(modifier: Modifier = Modifier) {
                 navController = navController
             )
         }
+
+//        composable(route = Routes.SUCCESSFULTRANSACTION){
+//            SuccessfulTransactionScreen(navController)
+//        }
+
+
 
     }
 
