@@ -190,7 +190,7 @@ fun SecondScreen(navController: NavController, modifier: Modifier = Modifier) {
                     onClick = {
                         passwordError = !isValidPassword(password) // Validate password on sign-up
                         if (!passwordError) {
-                            SignUpHandler().signUpUser(fullName,email,password,navController)
+                            navController.navigate("${Routes.SIGNUPSECONDSCREEN}/${fullName}/${email}/${password}")
                         }
                     },
                     shape = RoundedCornerShape(8.dp),

@@ -2,10 +2,26 @@ package com.example.spedotransferapp.ui.theme.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
@@ -20,9 +36,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.DarkWhite
@@ -32,14 +49,14 @@ import com.example.gittest.ui.theme.NewGray3
 import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.R
 import com.example.spedotransferapp.navigation.Routes
+import com.example.spedotransferapp.viewmodels.SignUpHandler
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EditProfileScreen(navController: NavController) {
-    var fullName by remember { mutableStateOf("") }
-    var email by remember { mutableStateOf("") }
+fun SignUpSecondScreen(name:String,email:String,password:String,navController: NavController,modifier: Modifier = Modifier) {
+
     var selectedCountry by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
     val countries = listOf("USA", "Italy", "Germany", "France", "India", "Egypt")
@@ -68,63 +85,37 @@ fun EditProfileScreen(navController: NavController) {
                 modifier = Modifier
                     .size(30.dp)
                     .clickable {
-                        navController.navigate(Routes.SETTINGS)
+                        navController.navigate(Routes.FIRSTSIGNUP)
                     }
                     .padding(start = 12.dp)
             )
-            Text(
-                text = "Edit Profile",
-                fontSize = 24.sp,
-                modifier = Modifier.fillMaxWidth(0.93f),
-                color = NewGray2,
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.W500
-            )
+
         }
 
         Text(
-            text = "Full Name",
-            fontSize = 16.sp,
-            color = NewGray3,
-            modifier = Modifier.padding(start = 24.dp, bottom = 8.dp, top = 16.dp)
+            text = "Speedo Transfer",
+            fontSize = 24.sp,
+            modifier = Modifier.fillMaxWidth(),
+            color = NewGray2,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.W500
         )
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            OutlinedTextField(
-                value = fullName,
-                onValueChange = { fullName = it },
-                modifier = Modifier.fillMaxWidth(0.9f),
-                shape = RoundedCornerShape(8.dp),
-                label = { Text(text = "Enter Cardholder Name") },
-            )
-        }
-
-        // Email Field
         Text(
-            text = "Email",
-            fontSize = 16.sp,
-            color = NewGray3,
-            modifier = Modifier.padding(start = 24.dp, bottom = 8.dp, top = 16.dp)
+            text = "Welcome to Banque Misr!",
+            fontSize = 24.sp,
+            modifier = Modifier.fillMaxWidth().padding(top=64.dp),
+            color = NewGray2,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.W500
         )
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                modifier = Modifier.fillMaxWidth(0.9f),
-                shape = RoundedCornerShape(8.dp),
-                label = { Text(text = "Enter Cardholder Email") },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Email
-                )
-            )
-        }
+        Text(
+            text = "Let’s Complete your Profile",
+            fontSize = 16.sp,
+            modifier = Modifier.fillMaxWidth().padding(top=12.dp),
+            color = NewGray2,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.W500
+        )
 
         Text(
             text = "Country",
@@ -207,7 +198,7 @@ fun EditProfileScreen(navController: NavController) {
                     }
                 },
 
-            )
+                )
         }
         Column(
             verticalArrangement = Arrangement.Center,
@@ -217,7 +208,9 @@ fun EditProfileScreen(navController: NavController) {
                 .padding(top = 32.dp)
         ) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    SignUpHandler().signUpUser(name,email,password,selectedCountry,dateBtn,navController)
+                },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth(0.9f),
                 colors = ButtonDefaults.buttonColors(
@@ -225,37 +218,30 @@ fun EditProfileScreen(navController: NavController) {
                 )
             ) {
                 Text(
-                    text = "Save",
+                    text = "Continue",
                     fontSize = 16.sp,
                     color = Color.White,
                     modifier = Modifier.padding(vertical = 6.dp)
-                    )
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(text = "Already have an account?", color = Color.Gray)
+                TextButton(onClick = { navController.navigate(Routes.SIGNIN) }) {
+                    Text(text = "Sign In", color = offred, textDecoration = TextDecoration.Underline)
+                }
             }
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun EditProfileScreenPreview() {
-    EditProfileScreen(rememberNavController())
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun DatePickerChooser(onConfirm: (DatePickerState) -> Unit, onDismiss: () -> Unit, modifier: Modifier = Modifier) {
-    val datePickerState = rememberDatePickerState()
-    DatePickerDialog(
-        onDismissRequest = { /*TODO*/ },
-        confirmButton = { TextButton(onClick = { onConfirm(datePickerState) }) {
-            Text(text = "OK")
-        } },
-        dismissButton = {
-            TextButton(onClick = { onDismiss() }) {
-                Text(text = "Cancel")
-            }
-        }
-    ) {
-        DatePicker(state = datePickerState)
-    }
+private fun SecondSignup() {
+    SignUpSecondScreen(name = "atef", email = "atef@gmail.com", password = "11111234", navController = rememberNavController() )
 }

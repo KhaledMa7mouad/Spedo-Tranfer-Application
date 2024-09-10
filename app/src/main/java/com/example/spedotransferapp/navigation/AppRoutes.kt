@@ -17,6 +17,7 @@ import com.example.spedotransferapp.ui.theme.screens.SignIn
 import com.example.spedotransferapp.ui.theme.screens.Timeout
 import androidx.navigation.navArgument
 import com.example.spedotransferapp.ui.theme.screens.NotificationScreen
+import com.example.spedotransferapp.ui.theme.screens.SignUpSecondScreen
 import com.example.spedotransferapp.ui.theme.screens.SuccessTransactionScreen
 
 import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
@@ -36,6 +37,7 @@ object Routes {
     const val TRANSFERCONFIRMATION = "transferconfirmation"
     const val SUCCESSFULTRANSACTION = "successfultransaction"
     const val NOTIFICATION = "notification"
+    const val SIGNUPSECONDSCREEN="signupsecondscreen"
 
 }
 
@@ -86,6 +88,25 @@ fun AppNavHost(modifier: Modifier = Modifier) {
                 amount = amount,
                 recipientName = recipientName,
                 recipientAccount = recipientAccount,
+                navController = navController
+            )
+        }
+        composable(
+            route = "${Routes.SIGNUPSECONDSCREEN}/{name}/{email}/{password}",
+            arguments = listOf(
+                navArgument("name") { type = NavType.StringType },
+                navArgument("email") { type = NavType.StringType },
+                navArgument("password") { type = NavType.StringType }
+            )
+        ) {
+            val name = it.arguments?.getString("name")!!
+            val email = it.arguments?.getString("email")!!
+            val password = it.arguments?.getString("password")!!
+
+            SignUpSecondScreen(
+                name = name,
+                email = email,
+                password = password,
                 navController = navController
             )
         }
