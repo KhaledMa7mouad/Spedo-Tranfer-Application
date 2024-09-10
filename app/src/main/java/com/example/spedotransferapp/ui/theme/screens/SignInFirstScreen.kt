@@ -43,6 +43,7 @@ import com.example.gittest.ui.theme.DarkWhite
 import com.example.gittest.ui.theme.LightDarkRed
 import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.navigation.Routes
+import com.example.spedotransferapp.viewmodels.SignUpHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -189,7 +190,7 @@ fun SecondScreen(navController: NavController, modifier: Modifier = Modifier) {
                     onClick = {
                         passwordError = !isValidPassword(password) // Validate password on sign-up
                         if (!passwordError) {
-                            // Navigate to next screen or perform sign-up logic
+                            SignUpHandler().signUpUser(fullName,email,password,navController)
                         }
                     },
                     shape = RoundedCornerShape(8.dp),
