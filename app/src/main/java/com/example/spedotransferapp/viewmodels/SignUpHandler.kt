@@ -12,8 +12,8 @@ import retrofit2.Response
 
 class SignUpHandler {
 
-    fun signUpUser(name: String, email: String, password: String,navController: NavController) {
-        val accountSignup = Customers(name = name, email = email, password = password)
+    fun signUpUser(name: String, email: String, password: String,country:String,dateOfBirth:String,navController: NavController) {
+        val accountSignup = Customers(name = name, email = email, password = password, dateOfBirth = dateOfBirth, country = country)
 
         val call = AccountAPIService.callable.signUp(accountSignup)
         call.enqueue(object : Callback<SignUpResponse> {
