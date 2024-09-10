@@ -1,7 +1,5 @@
 package com.example.spedotransferapp.ui.theme.screens
 
-
-import android.content.Intent
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,12 +32,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -48,11 +43,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.Navigator
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.DarkGreen
 import com.example.gittest.ui.theme.DarkWhite
+import com.example.gittest.ui.theme.LightBlue
 import com.example.spedotransferapp.R
+import com.example.spedotransferapp.models.Transaction
 import com.example.spedotransferapp.navigation.Routes
 
 @Composable
@@ -116,7 +112,8 @@ fun TransactionsScreen(navController: NavController) {
                         modifier = Modifier.fillMaxSize()
                     ) {
                         items(transactionsData) { transaction ->
-                            TransactionItem(navController, transaction)
+                            TransactionItem(navController ,transaction)
+                            Log.d("trace", "Displaying transaction")
                         }
                     }
                 }
@@ -128,6 +125,12 @@ fun TransactionsScreen(navController: NavController) {
         }
     )
 }
+
+
+
+
+
+
 
 @Composable
 fun TransactionItem(navController: NavController, transaction: Transaction) {
@@ -194,7 +197,7 @@ fun TransactionItem(navController: NavController, transaction: Transaction) {
                     modifier = Modifier
                         .size(32.dp)
                         .clickable {
-                            navController.navigate(Routes.SUCCESSFULTRANSACTION)
+                            navController.navigate(route = Routes.SUCCESSFULTRANSACTION)
                         }
                 )
                 Box(
@@ -214,14 +217,7 @@ fun TransactionItem(navController: NavController, transaction: Transaction) {
     }
 }
 
-data class Transaction(
-    val senderName: String,
-    val cardNumber: String,
-    val transactionType: String,
-    val amount: String,
-    val date: String,
-    val status: String
-)
+
 
 val transactionsData = listOf(
     Transaction(
@@ -250,8 +246,10 @@ val transactionsData = listOf(
     )
 )
 
+
+
 @Composable
-fun SuccessTransactionScreen() {
+fun SuccessTransactionScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -260,7 +258,9 @@ fun SuccessTransactionScreen() {
                 elevation = 0.dp,
 
                 navigationIcon = {
-                    IconButton(onClick = { /* TODO: Handle back navigation */ }) {
+                    IconButton(onClick = {
+                    //    navController.popBackStack()
+                    }) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },
@@ -387,7 +387,7 @@ fun SuccessTransactionScreen() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFFBEC5CE) , shape = RoundedCornerShape(16.dp) )
+                    .background(LightBlue, shape = RoundedCornerShape(16.dp))
                     .padding(16.dp),
 
             ) {
@@ -436,5 +436,5 @@ private fun TransactionsScreenPrev() {
 @Preview(showSystemUi = true)
 @Composable
 private fun SuccessfulTransactionScreenPrev() {
-    SuccessTransactionScreen()
+    SuccessTransactionScreen(rememberNavController())
 }
