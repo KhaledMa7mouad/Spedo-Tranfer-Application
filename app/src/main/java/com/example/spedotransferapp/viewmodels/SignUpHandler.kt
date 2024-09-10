@@ -30,7 +30,7 @@ class SignUpHandler {
             }
 
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                // Handle failure due to network issues
+
                 Log.d("SignUp", "Network failure: ${t.message}")
             }
         })

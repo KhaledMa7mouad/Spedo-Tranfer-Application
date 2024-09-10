@@ -22,6 +22,7 @@ import com.example.spedotransferapp.ui.theme.screens.SuccessTransactionScreen
 
 import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
 import com.example.spedotransferapp.ui.theme.screens.TransferConfirmationScreen
+import com.example.spedotransferapp.viewmodels.SignInHandler
 
 object Routes {
     const val FIRSTSIGNUP = "firstsignup"
@@ -54,7 +55,7 @@ fun AppNavHost(modifier: Modifier = Modifier) {
             SecondScreen(navController)
         }
         composable(route = Routes.SIGNIN) {
-            SignIn(navController)
+            SignIn(navController, signInHandler = SignInHandler())
         }
 
         composable(route = Routes.TIMEOUT) {
