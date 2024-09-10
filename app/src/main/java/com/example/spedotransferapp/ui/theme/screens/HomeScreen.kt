@@ -35,6 +35,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
 fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
@@ -44,7 +45,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
             .padding(16.dp)
             .background(Color(0xFFFFF7F0))
     ) {
-        TopSection()
+        TopSection(navController)
         Spacer(modifier = Modifier.height(20.dp))
         BalanceCard()
         Spacer(modifier = Modifier.height(20.dp))
@@ -53,7 +54,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun TopSection() {
+fun TopSection(navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -88,7 +89,9 @@ fun TopSection() {
             tint = Color.Black,
             modifier = Modifier
                 .size(32.dp)
-                .clickable { }
+                .clickable {
+                    navController.navigate(Routes.NOTIFICATION)
+                }
         )
     }
 }
