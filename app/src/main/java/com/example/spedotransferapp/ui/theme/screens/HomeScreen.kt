@@ -32,13 +32,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.R
 import com.example.spedotransferapp.navigation.Routes
 
 @Composable
-fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun HomeScreen(navController: NavHostController, modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()

@@ -36,13 +36,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.DarkWhite
 import com.example.gittest.ui.theme.LightBlue
 import com.example.spedotransferapp.R
 import com.example.spedotransferapp.models.NotificationModel
 
 @Composable
-fun NotificationScreen() {
+fun NotificationScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -180,5 +182,5 @@ fun NotificationItem(noti: NotificationModel) {
 @Preview(showSystemUi = true)
 @Composable
 private fun NotificationScreenPrev() {
-    NotificationScreen()
+    NotificationScreen(rememberNavController())
 }

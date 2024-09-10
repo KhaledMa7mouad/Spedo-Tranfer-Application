@@ -43,6 +43,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.DarkGreen
 import com.example.gittest.ui.theme.DarkWhite
@@ -52,7 +53,7 @@ import com.example.spedotransferapp.models.Transaction
 import com.example.spedotransferapp.navigation.Routes
 
 @Composable
-fun TransactionsScreen(navController: NavController) {
+fun TransactionsScreen(navController: NavHostController) {
     val context = LocalContext.current
     Scaffold(
         topBar = {
