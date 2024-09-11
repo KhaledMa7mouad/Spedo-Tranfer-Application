@@ -1,6 +1,6 @@
 package com.example.spedotransferapp
 
-import MainScreenScaffold
+
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
