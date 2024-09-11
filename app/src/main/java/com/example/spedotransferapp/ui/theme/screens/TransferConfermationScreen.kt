@@ -168,7 +168,9 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
 
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                navController.navigate("${Routes.TRANSFERCONFIRMATIONLAST}/$amount/$recipientName/$recipientAccount")
+            },
             colors = ButtonDefaults.buttonColors(
                 containerColor = offred
             ),
@@ -222,14 +224,14 @@ fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAcc
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.White, shape = RoundedCornerShape(12.dp))
-            .padding(16.dp)
+            .padding(8.dp)
     ) {
         // From Section
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp)
+                .padding(bottom = 4.dp)
 
         ) {
             Icon(
@@ -245,13 +247,13 @@ fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAcc
                     color = offred,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 4.dp)
                 )
                 Text(
                     text = fromName,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 4.dp)
 
                 )
                 Text(
@@ -297,14 +299,14 @@ fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAcc
                     color = offred,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(vertical = 8.dp)
+                    modifier = Modifier.padding(vertical = 4.dp)
 
                 )
                 Text(
                     text = toName,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 4.dp)
 
                 )
                 Text(

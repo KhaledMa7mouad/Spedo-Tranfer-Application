@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
 fun Profile(navController: NavController) {
@@ -57,7 +58,7 @@ fun Profile(navController: NavController) {
                 modifier = Modifier
                     .size(22.dp)
                     .clickable {
-                        navController.navigate("your_previous_screen_route")
+                        navController.popBackStack()
                     }
             )
             Text(
@@ -75,25 +76,29 @@ fun Profile(navController: NavController) {
             title = "Personal information",
             description = "Your information",
             icon = R.drawable.ic_profile,
-            onClick = { navController.navigate("personal_info_route") }
+            onClick = {
+                navController.navigate(Routes.PROFILEINFORMATIONSCREEN)
+            }
         )
         MoreField(
             title = "Setting",
             description = "Change your settings",
             icon = R.drawable.ic_settings,
-            onClick = { navController.navigate("settings_route") }
+            onClick = {
+                navController.navigate(Routes.SETTINGS)
+            }
         )
         MoreField(
             title = "Payment history",
             description = "View your transactions",
             icon = R.drawable.ic_history_3x,
-            onClick = { navController.navigate("payment_history_route") }
+            onClick = { }//navController.navigate("payment_history_route") }
         )
         MoreField(
             title = "My favourite list",
             description = "View your favourites",
             icon = R.drawable.ic_favourite,
-            onClick = { navController.navigate("favourite_list_route") }
+            onClick = { }//navController.navigate("favourite_list_route") }
         )
     }
 }
@@ -166,11 +171,8 @@ fun MoreField(title: String, description: String, icon: Int, onClick: () -> Unit
     }
 }
 
-val String.color
-    get() = Color(parseColor(this))
 
 @Preview(showSystemUi = true, showBackground = true)
-
 @Composable
 fun MyComposablePreview() {
     val navController = rememberNavController()

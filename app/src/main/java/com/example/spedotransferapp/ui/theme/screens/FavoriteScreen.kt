@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @Composable
 fun FavoritesScreen(navController: NavController) {
@@ -57,7 +58,7 @@ fun FavoritesScreen(navController: NavController) {
                 modifier = Modifier
                     .size(22.dp)
                     .clickable {
-                        navController.navigate("your_previous_screen_route") // تغيير المسار حسب حاجتك
+                        navController.popBackStack()
                     }
             )
             Text(

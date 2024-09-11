@@ -44,7 +44,7 @@ fun ProfileScreen(navController: NavController) {
                 modifier = Modifier
                     .size(22.dp)
                     .clickable {
-                        navController.navigate("your_previous_screen_route")
+                        navController.popBackStack()
                     }
             )
             Text(

@@ -8,6 +8,11 @@ import androidx.navigation.compose.rememberNavController
 
 
 object Routes {
+    const val PROFILEINFORMATIONSCREEN: String="profileinformation"
+    const val PROFILE="profile"
+    const val FAVOURITESCREEN="favouritescreen"
+    const val HELPSCREEN="helpscreen"
+    const val TRANSFERCONFIRMATIONLAST="transferconfirmationlast"
     const val FIRSTSIGNUP = "firstsignup"
     const val SIGNIN = "signin"
     const val ONBOARDINGONE = "onboardingone"

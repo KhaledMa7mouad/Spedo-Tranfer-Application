@@ -44,7 +44,7 @@ fun SettingsScreen(navController: NavController) {
                 tint = NewGray2,
                 modifier = Modifier
                     .size(30.dp)
-                    .clickable { }
+                    .clickable { navController.popBackStack()}
                     .padding(start = 12.dp)
             )
             Text(

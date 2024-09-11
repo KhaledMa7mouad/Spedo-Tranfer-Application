@@ -12,6 +12,8 @@ import com.example.spedotransferapp.ui.theme.screens.SecondScreen
 import com.example.spedotransferapp.ui.theme.screens.SignIn
 import com.example.spedotransferapp.ui.theme.screens.SignUpSecondScreen
 import com.example.spedotransferapp.ui.theme.screens.Timeout
+import com.example.spedotransferapp.ui.theme.screens.TransferConfirmationLastScreen
+import com.example.spedotransferapp.ui.theme.screens.TransferConfirmationScreen
 import com.example.spedotransferapp.viewmodels.SignInHandler
 import com.example.spedotransferapp.viewmodels.SignUpHandler
 
@@ -49,6 +51,9 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
                 signUpHandler = SignUpHandler()
             )
         }
+
+
+
 
     }
 }

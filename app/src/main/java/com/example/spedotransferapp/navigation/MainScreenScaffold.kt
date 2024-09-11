@@ -29,12 +29,17 @@ import com.example.spedotransferapp.navigation.Routes
 import com.example.spedotransferapp.ui.theme.screens.AddCardScreen
 import com.example.spedotransferapp.ui.theme.screens.EditPasswordScreen
 import com.example.spedotransferapp.ui.theme.screens.EditProfileScreen
+import com.example.spedotransferapp.ui.theme.screens.FavoritesScreen
+import com.example.spedotransferapp.ui.theme.screens.HelpScreen
 import com.example.spedotransferapp.ui.theme.screens.MoreScreen
 import com.example.spedotransferapp.ui.theme.screens.NotificationScreen
+import com.example.spedotransferapp.ui.theme.screens.Profile
+import com.example.spedotransferapp.ui.theme.screens.ProfileScreen
 import com.example.spedotransferapp.ui.theme.screens.SettingsScreen
 import com.example.spedotransferapp.ui.theme.screens.SuccessTransactionScreen
 import com.example.spedotransferapp.ui.theme.screens.TransactionsScreen
 import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
+import com.example.spedotransferapp.ui.theme.screens.TransferConfirmationLastScreen
 import com.example.spedotransferapp.ui.theme.screens.TransferConfirmationScreen
 
 @Composable
@@ -83,6 +88,25 @@ fun MainScreenScaffold() {
                     navController = navController
                 )
             }
+            composable(
+                route = "${Routes.TRANSFERCONFIRMATIONLAST}/{amount}/{recipientName}/{recipientAccount}",
+                arguments = listOf(
+                    navArgument("amount") { type = NavType.StringType },
+                    navArgument("recipientName") { type = NavType.StringType },
+                    navArgument("recipientAccount") { type = NavType.StringType }
+                )
+            ) {
+                val amount = it.arguments?.getString("amount")!!
+                val recipientName = it.arguments?.getString("recipientName")!!
+                val recipientAccount = it.arguments?.getString("recipientAccount")!!
+
+                TransferConfirmationLastScreen(
+                    amount = amount,
+                    recipientName = recipientName,
+                    recipientAccount = recipientAccount,
+                    navController = navController
+                )
+            }
 
 
             composable(route = Routes.SUCCESSFULTRANSACTION) {
@@ -91,6 +115,18 @@ fun MainScreenScaffold() {
 
             composable(route = Routes.NOTIFICATION) {
                 NotificationScreen(navController)
+            }
+            composable(route = Routes.FAVOURITESCREEN) {
+                FavoritesScreen(navController)
+            }
+            composable(route = Routes.HELPSCREEN) {
+                HelpScreen()
+            }
+            composable(route = Routes.PROFILEINFORMATIONSCREEN) {
+                ProfileScreen(navController)
+            }
+            composable(route = Routes.PROFILE) {
+                Profile(navController)
             }
 
 
