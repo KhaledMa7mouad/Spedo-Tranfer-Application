@@ -41,6 +41,8 @@ fun HelpScreen() {
             color = Color.Black,
             textAlign = TextAlign.Center
         )
+        Spacer(modifier = Modifier.height(16.dp))
+        ContactOptions({})
     }
 }
 
@@ -127,17 +129,7 @@ fun ContactCard(icon: Int, text: String, phoneNumber: String? = null, onClick: (
     }
 }
 
-@Composable
-fun MyAppNavHost(navController: NavController) {
-    NavHost(navController = navController as NavHostController, startDestination = "more") {
-        composable("more") {
-            MoreScreen(navController = navController)
-        }
-        composable("help") {
-            HelpScreen()
-        }
-    }
-}
+
 
 
 

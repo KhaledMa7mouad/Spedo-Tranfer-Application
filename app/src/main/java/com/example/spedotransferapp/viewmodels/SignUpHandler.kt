@@ -12,27 +12,20 @@ import retrofit2.Response
 
 class SignUpHandler {
 
-    fun signUpUser(name: String, email: String, password: String,country:String,dateOfBirth:String,navController: NavController) {
+    suspend fun signUpUser(name: String, email: String, password: String, country: String, dateOfBirth: String): SignUpResponse? {
         val accountSignup = Customers(name = name, email = email, password = password, dateOfBirth = dateOfBirth, country = country)
-
-        val call = AccountAPIService.callable.signUp(accountSignup)
-        call.enqueue(object : Callback<SignUpResponse> {
-            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                if (response.isSuccessful) {
-                    val signUpResponse = response.body()
-                    signUpResponse?.let {
-                        navController.navigate(Routes.SIGNIN)
-                    }
-                } else {
-
-                    Log.d("SignUp", "API error: ${response.errorBody()?.string()}")
-                }
+        return try {
+            val response = AccountAPIService.callable.signUp(accountSignup)
+            if (response.isSuccessful) {
+                response.body() // return response if successful
+            } else {
+                // Handle API error
+                null
             }
-
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-
-                Log.d("SignUp", "Network failure: ${t.message}")
-            }
-        })
+        } catch (e: Exception) {
+            // Handle network failure
+            null
+        }
     }
+
 }

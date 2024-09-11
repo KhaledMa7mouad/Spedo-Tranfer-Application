@@ -40,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.DarkWhite
 import com.example.gittest.ui.theme.LightDarkRed
@@ -50,7 +51,7 @@ import com.example.spedotransferapp.navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TransfareAmountScreen(navController: NavController) {
+fun TransfareAmountScreen(navController: NavHostController) {
     var amount by remember {
         mutableStateOf("")
     }

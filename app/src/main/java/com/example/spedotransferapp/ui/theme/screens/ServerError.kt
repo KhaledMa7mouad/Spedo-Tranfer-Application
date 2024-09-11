@@ -87,7 +87,7 @@ fun ServerError(navController: NavController,modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(top=24.dp)
             )
             Button(
-                onClick = { navController.navigate(Routes.ONBOARDINGTHREE) },
+                onClick = { navController.navigate(Routes.SIGNIN) },
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .padding(top = 24.dp),
@@ -104,7 +104,7 @@ fun ServerError(navController: NavController,modifier: Modifier = Modifier) {
                 )
             }
             OutlinedButton(
-                onClick = { navController.navigate(Routes.ONBOARDINGTHREE) },
+                onClick = { navController.navigate(Routes.SIGNIN) },
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .padding(top = 24.dp),

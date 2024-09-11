@@ -1,10 +1,5 @@
 package com.example.spedotransferapp.ui.theme.screens
 
-import android.app.Notification
-import android.util.Log
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,19 +9,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,75 +23,26 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.gittest.ui.theme.DarkWhite
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.LightBlue
 import com.example.spedotransferapp.R
 import com.example.spedotransferapp.models.NotificationModel
-
 @Composable
-fun NotificationScreen() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                backgroundColor = DarkWhite,
-                elevation = 0.dp,
-                title = {
-                    Text(
-                        text = "Notifications",
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(end = 64.dp)
-                            .wrapContentSize(Alignment.Center),
-
-                        )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { /* Handle navigation back */ }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back"
-
-                        )
-                    }
-                }
-            )
-        },
-        content = { innerPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(DarkWhite)
-                    .padding(innerPadding)
-
-            )
-            {
-
-                Column(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize()
-                ) {
-
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        items(notificationsData) { noti ->
-
-                            NotificationItem(noti = noti)
-
-                        }
-                    }
-                }
-
-
+fun NotificationScreen(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize()
+    ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(notificationsData) { noti ->
+                NotificationItem(noti = noti)
             }
-
-
         }
-    )
-
-
+    }
 }
 
 val notificationsData = listOf(
@@ -124,33 +63,27 @@ val notificationsData = listOf(
     ),
 )
 
-
 @Composable
 fun NotificationItem(noti: NotificationModel) {
     Card(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth() // Fill only the width, not the full size
             .padding(4.dp)
             .height(120.dp),
         backgroundColor = LightBlue,
     ) {
-
         Row(
-           verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .padding(8.dp)
-                .fillMaxWidth(),
-
+                .fillMaxWidth()
         ) {
-
             Icon(
                 painter = painterResource(id = R.drawable.visa_icon),
                 contentDescription = "Icon",
                 tint = Color.Unspecified,
-                modifier = Modifier
-                    .size(60.dp)
-                    .align(Alignment.CenterVertically)
+                modifier = Modifier.size(60.dp) // Removed unnecessary align
             )
 
             Spacer(modifier = Modifier.width(8.dp))
@@ -159,26 +92,19 @@ fun NotificationItem(noti: NotificationModel) {
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = noti.title,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = "Yoy have received 1000 USD from ${noti.senderName} With card number ${noti.cardNumber}"
+                    text = "You have received 1000 USD from ${noti.senderName} with card number ${noti.cardNumber}"
                 )
                 Text(
                     text = noti.date,
                     fontWeight = FontWeight.Bold
                 )
-
             }
-
         }
     }
-
 }
 
 @Preview(showSystemUi = true)
 @Composable
 private fun NotificationScreenPrev() {
-    NotificationScreen()
+    NotificationScreen(rememberNavController())
 }

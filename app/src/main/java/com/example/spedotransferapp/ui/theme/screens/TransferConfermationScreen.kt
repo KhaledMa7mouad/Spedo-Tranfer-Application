@@ -113,7 +113,7 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
         Text(
             text ="${amount} EGB",
             modifier = Modifier
-                .padding(top = 8.dp, bottom = 8.dp)
+                .padding(top = 4.dp, bottom = 4.dp)
                 .fillMaxWidth(),
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp,
@@ -123,7 +123,7 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
         Text(
             text ="Transfer amount",
             modifier = Modifier
-                .padding(top = 4.dp, bottom = 12.dp)
+                .padding(top = 4.dp, bottom = 4.dp)
                 .fillMaxWidth(),
             fontSize = 16.sp,
             textAlign = TextAlign.Center,
@@ -146,7 +146,7 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
             Text(
                 text ="${amount} EGB",
                 modifier = Modifier
-                    .padding(top = 4.dp, bottom = 8.dp)
+                    .padding(top = 4.dp, bottom = 4.dp)
                     .weight(1f),
                 fontSize = 16.sp,
                 textAlign = TextAlign.End,
@@ -160,7 +160,7 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
             thickness = 1.dp,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp)
+                .padding(bottom = 4.dp)
         )
 
         TransferDetails(fromName = "Mohamed Atef", fromAccount = "xxxx2424", toName = recipientName, toAccount =recipientAccount ,R.drawable.baseline_swap_vertical_circle_24)
@@ -168,19 +168,21 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
 
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                navController.navigate("${Routes.TRANSFERCONFIRMATIONLAST}/$amount/$recipientName/$recipientAccount")
+            },
             colors = ButtonDefaults.buttonColors(
                 containerColor = offred
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 24.dp),
+                .padding(vertical = 8.dp),
             shape = RoundedCornerShape(8.dp)
         ) {
             Text(
                 text = "Confirm",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(vertical = 12.dp)
+                modifier = Modifier.padding(vertical = 4.dp)
             )
         }
         OutlinedButton(
@@ -195,7 +197,7 @@ fun TransferConfirmationScreen(amount:String="24",recipientName:String="mo",reci
             Text(
                 text = "Previous",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(vertical = 12.dp),
+                modifier = Modifier.padding(vertical = 4.dp),
 
             )
         }
@@ -222,14 +224,14 @@ fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAcc
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.White, shape = RoundedCornerShape(12.dp))
-            .padding(16.dp)
+            .padding(8.dp)
     ) {
         // From Section
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp)
+                .padding(bottom = 4.dp)
 
         ) {
             Icon(
@@ -245,13 +247,13 @@ fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAcc
                     color = offred,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 12.dp)
+                    modifier = Modifier.padding(bottom = 4.dp)
                 )
                 Text(
                     text = fromName,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 12.dp)
+                    modifier = Modifier.padding(bottom = 4.dp)
 
                 )
                 Text(
@@ -297,14 +299,14 @@ fun TransferDetails(fromName: String, fromAccount: String, toName: String, toAcc
                     color = offred,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(vertical = 12.dp)
+                    modifier = Modifier.padding(vertical = 4.dp)
 
                 )
                 Text(
                     text = toName,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 12.dp)
+                    modifier = Modifier.padding(bottom = 4.dp)
 
                 )
                 Text(

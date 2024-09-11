@@ -181,6 +181,7 @@ fun SignIn(
         Button(
             onClick = {
                 viewModel.signInUser(text, password)
+                navController.navigate(Routes.SCAFFOLDSCREEN)
             },
             enabled = true,
             modifier = Modifier

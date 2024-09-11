@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.spedotransferapp.R
+import com.example.spedotransferapp.navigation.Routes
 
 @OptIn(ExperimentalSubclassOptIn::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -65,7 +66,7 @@ fun MoreScreen(navController: NavController) {
                 modifier = Modifier
                     .size(22.dp)
                     .clickable {
-                        navController.navigate("your_previous_screen_route")
+                        navController.navigate(Routes.SCAFFOLDSCREEN)
                     }
             )
             Text(
@@ -86,17 +87,20 @@ fun MoreScreen(navController: NavController) {
         MoreField(
             "Favourites",
             leadingIcon = R.drawable.star,
-
-        )
+        ){
+            navController.navigate(Routes.FAVOURITESCREEN)
+        }
         MoreField(
             "Profile",
             leadingIcon = R.drawable.user,
-        )
+        ){
+            navController.navigate(Routes.PROFILE)
+        }
         MoreField(
             "Help",
             leadingIcon = R.drawable.question,
             onClick = {
-                navController.navigate("help")
+                navController.navigate(Routes.HELPSCREEN)
             }
 
         )

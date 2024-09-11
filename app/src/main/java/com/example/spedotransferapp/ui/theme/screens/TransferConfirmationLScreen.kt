@@ -48,11 +48,11 @@ fun TransferConfirmationLastScreen(amount:String="24",recipientName:String="mo",
             .background(
                 Brush.linearGradient(colors = listOf(DarkWhite, LightDarkRed))
             )
-            .padding(horizontal = 12.dp)
+            .padding(top = 12.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(bottom = 32.dp, top = 44.dp)
+            modifier = Modifier.padding(bottom = 12.dp, top = 12.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.outline_arrow_back_ios_new_24),
@@ -86,7 +86,7 @@ fun TransferConfirmationLastScreen(amount:String="24",recipientName:String="mo",
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(8.dp),
 
             ) {
             Text(
@@ -152,7 +152,7 @@ fun TransferConfirmationLastScreen(amount:String="24",recipientName:String="mo",
             Text(
                 text ="${amount} EGB",
                 modifier = Modifier
-                    .padding(top = 4.dp, bottom = 8.dp)
+                    .padding(top = 4.dp, bottom = 4.dp)
                     .weight(1f),
                 fontSize = 16.sp,
                 textAlign = TextAlign.End,
@@ -166,26 +166,28 @@ fun TransferConfirmationLastScreen(amount:String="24",recipientName:String="mo",
             thickness = 1.dp,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp)
+                .padding(bottom = 4.dp)
         )
 
 
 
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                navController.navigate(Routes.SCAFFOLDSCREEN)
+            },
             colors = ButtonDefaults.buttonColors(
                 containerColor = offred
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 12.dp),
+                .padding(vertical = 8.dp, horizontal = 8.dp),
             shape = RoundedCornerShape(8.dp)
         ) {
             Text(
                 text = "Back to Home",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(vertical = 12.dp)
+                modifier = Modifier.padding(vertical = 10.dp)
             )
         }
         OutlinedButton(
@@ -193,14 +195,14 @@ fun TransferConfirmationLastScreen(amount:String="24",recipientName:String="mo",
             colors = ButtonDefaults.outlinedButtonColors(
                 contentColor = offred,
             ),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
             shape = RoundedCornerShape(8.dp),
             border = BorderStroke(2.dp, offred)
         ) {
             Text(
                 text = "Add to Favourite",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(vertical = 12.dp),
+                modifier = Modifier.padding(vertical = 10.dp),
 
                 )
         }
