@@ -260,7 +260,7 @@ fun SuccessTransactionScreen(navController: NavController) {
 
                 navigationIcon = {
                     IconButton(onClick = {
-                    //    navController.popBackStack()
+                   navController.popBackStack()
                     }) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }

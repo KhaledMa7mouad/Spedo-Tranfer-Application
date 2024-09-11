@@ -1,5 +1,6 @@
 package com.example.spedotransferapp.ui.theme.screens
 
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,10 +28,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType.Companion.Uri
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.spedotransferapp.R
@@ -46,9 +49,6 @@ fun MoreScreen(navController: NavController) {
     )
 
     val context = LocalContext.current
-
-
-
 
     Column(
         modifier = Modifier
@@ -83,7 +83,12 @@ fun MoreScreen(navController: NavController) {
         MoreField(
             "Transfer from website",
             leadingIcon = R.drawable.web_site,
+
         )
+        {
+            val i = Intent(Intent.ACTION_VIEW, ("https://www.banquemisr.com/ar-EG/Home/Digital-Services/BM-Online").toUri())
+            context.startActivity(i)
+        }
         MoreField(
             "Favourites",
             leadingIcon = R.drawable.star,
