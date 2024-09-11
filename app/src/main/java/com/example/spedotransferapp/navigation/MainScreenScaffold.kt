@@ -1,24 +1,29 @@
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.spedotransferapp.navigation.Routes
 import com.example.spedotransferapp.ui.theme.screens.AddCardScreen
@@ -27,7 +32,6 @@ import com.example.spedotransferapp.ui.theme.screens.EditProfileScreen
 import com.example.spedotransferapp.ui.theme.screens.MoreScreen
 import com.example.spedotransferapp.ui.theme.screens.NotificationScreen
 import com.example.spedotransferapp.ui.theme.screens.SettingsScreen
-import com.example.spedotransferapp.ui.theme.screens.SignUpSecondScreen
 import com.example.spedotransferapp.ui.theme.screens.SuccessTransactionScreen
 import com.example.spedotransferapp.ui.theme.screens.TransactionsScreen
 import com.example.spedotransferapp.ui.theme.screens.TransfareAmountScreen
@@ -79,25 +83,7 @@ fun MainScreenScaffold() {
                     navController = navController
                 )
             }
-            composable(
-                route = "${Routes.SIGNUPSECONDSCREEN}/{name}/{email}/{password}",
-                arguments = listOf(
-                    navArgument("name") { type = NavType.StringType },
-                    navArgument("email") { type = NavType.StringType },
-                    navArgument("password") { type = NavType.StringType }
-                )
-            ) {
-                val name = it.arguments?.getString("name")!!
-                val email = it.arguments?.getString("email")!!
-                val password = it.arguments?.getString("password")!!
 
-                SignUpSecondScreen(
-                    name = name,
-                    email = email,
-                    password = password,
-                    navController = navController
-                )
-            }
 
             composable(route = Routes.SUCCESSFULTRANSACTION) {
                 SuccessTransactionScreen(navController)

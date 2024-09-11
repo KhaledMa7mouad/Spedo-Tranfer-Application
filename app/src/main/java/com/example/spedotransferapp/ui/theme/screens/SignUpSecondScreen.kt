@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -40,6 +41,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.DarkWhite
@@ -49,13 +51,24 @@ import com.example.gittest.ui.theme.NewGray3
 import com.example.gittest.ui.theme.offred
 import com.example.spedotransferapp.R
 import com.example.spedotransferapp.navigation.Routes
+import com.example.spedotransferapp.viewmodels.SignInViewModel
+import com.example.spedotransferapp.viewmodels.SignInViewModelFactory
 import com.example.spedotransferapp.viewmodels.SignUpHandler
+import com.example.spedotransferapp.viewmodels.SignUpViewModel
+import com.example.spedotransferapp.viewmodels.SignUpViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpSecondScreen(name:String,email:String,password:String,navController: NavController,modifier: Modifier = Modifier) {
+fun SignUpSecondScreen(
+    name:String,
+    email:String,
+    password:String,
+    navController: NavController,
+    signUpHandler: SignUpHandler,
+    modifier: Modifier = Modifier
+) {
 
     var selectedCountry by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
@@ -103,7 +116,9 @@ fun SignUpSecondScreen(name:String,email:String,password:String,navController: N
         Text(
             text = "Welcome to Banque Misr!",
             fontSize = 24.sp,
-            modifier = Modifier.fillMaxWidth().padding(top=64.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 64.dp),
             color = NewGray2,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.W500
@@ -111,7 +126,9 @@ fun SignUpSecondScreen(name:String,email:String,password:String,navController: N
         Text(
             text = "Let’s Complete your Profile",
             fontSize = 16.sp,
-            modifier = Modifier.fillMaxWidth().padding(top=12.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 12.dp),
             color = NewGray2,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.W500
@@ -200,6 +217,7 @@ fun SignUpSecondScreen(name:String,email:String,password:String,navController: N
 
                 )
         }
+
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -207,9 +225,24 @@ fun SignUpSecondScreen(name:String,email:String,password:String,navController: N
                 .fillMaxWidth()
                 .padding(top = 32.dp)
         ) {
+            val viewModel: SignUpViewModel = viewModel(
+                factory = SignUpViewModelFactory(signUpHandler)
+            )
+
+            viewModel.errorMessage?.let {
+                Text(
+                    text = it,
+                    color = Color.Red,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+
+            if (viewModel.isLoading) {
+                CircularProgressIndicator(modifier = Modifier.padding(16.dp))
+            }
             Button(
                 onClick = {
-                    SignUpHandler().signUpUser(name,email,password,selectedCountry,dateBtn,navController)
+                    viewModel.signUpUser(name, email, password, selectedCountry, dateBtn, navController)
                 },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth(0.9f),
@@ -243,5 +276,13 @@ fun SignUpSecondScreen(name:String,email:String,password:String,navController: N
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 private fun SecondSignup() {
-    SignUpSecondScreen(name = "atef", email = "atef@gmail.com", password = "11111234", navController = rememberNavController() )
+
+
+    SignUpSecondScreen(
+        name = "atef",
+        email = "atef@gmail.com",
+        password = "11111234",
+        signUpHandler = SignUpHandler(),
+        navController = rememberNavController()
+    )
 }

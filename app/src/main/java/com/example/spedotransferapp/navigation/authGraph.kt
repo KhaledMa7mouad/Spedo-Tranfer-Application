@@ -1,14 +1,19 @@
 package com.example.spedotransferapp.navigation
 
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
 
 import com.example.spedotransferapp.ui.theme.screens.SecondScreen
 import com.example.spedotransferapp.ui.theme.screens.SignIn
+import com.example.spedotransferapp.ui.theme.screens.SignUpSecondScreen
 import com.example.spedotransferapp.ui.theme.screens.Timeout
 import com.example.spedotransferapp.viewmodels.SignInHandler
+import com.example.spedotransferapp.viewmodels.SignUpHandler
 
 fun NavGraphBuilder.authGraph(navController: NavController) {
 
@@ -23,6 +28,26 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
 
         composable(route = Routes.TIMEOUT) {
             Timeout(navController)
+        }
+        composable(
+            route = "${Routes.SIGNUPSECONDSCREEN}/{name}/{email}/{password}",
+            arguments = listOf(
+                navArgument("name") { type = NavType.StringType },
+                navArgument("email") { type = NavType.StringType },
+                navArgument("password") { type = NavType.StringType }
+            )
+        ) {
+            val name = it.arguments?.getString("name")!!
+            val email = it.arguments?.getString("email")!!
+            val password = it.arguments?.getString("password")!!
+
+            SignUpSecondScreen(
+                name = name,
+                email = email,
+                password = password,
+                navController = navController,
+                signUpHandler = SignUpHandler()
+            )
         }
 
     }
