@@ -23,13 +23,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.LightBlue
 import com.example.spedotransferapp.R
 import com.example.spedotransferapp.models.NotificationModel
+
 @Composable
-fun NotificationScreen(navController: NavController) {
+fun NotificationScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -68,10 +69,11 @@ fun NotificationItem(noti: NotificationModel) {
     Card(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
-            .fillMaxWidth() // Fill only the width, not the full size
+            .fillMaxWidth()
             .padding(4.dp)
             .height(120.dp),
         backgroundColor = LightBlue,
+        elevation = 4.dp
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -83,7 +85,7 @@ fun NotificationItem(noti: NotificationModel) {
                 painter = painterResource(id = R.drawable.visa_icon),
                 contentDescription = "Icon",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(60.dp) // Removed unnecessary align
+                modifier = Modifier.size(60.dp)
             )
 
             Spacer(modifier = Modifier.width(8.dp))
@@ -92,7 +94,9 @@ fun NotificationItem(noti: NotificationModel) {
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "You have received 1000 USD from ${noti.senderName} with card number ${noti.cardNumber}"
+                    text = "You have received 1000 USD from ${noti.senderName} with card number ${noti.cardNumber}",
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier.padding(bottom = 4.dp)
                 )
                 Text(
                     text = noti.date,

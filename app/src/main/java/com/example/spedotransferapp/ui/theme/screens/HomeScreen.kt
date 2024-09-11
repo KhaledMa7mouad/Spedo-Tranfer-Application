@@ -118,7 +118,7 @@ fun BalanceCard() {
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = "10000EGP",
+                text = "0 EGP",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 32.sp,
@@ -176,15 +176,16 @@ fun TransactionItem() {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
-                Text(text = "Ahmed Mohamed", fontWeight = FontWeight.Bold)
+                Text(text = "Mohammed Atef", fontWeight = FontWeight.Bold)
                 Text(text = "Visa · Master Card · 1234", color = Color.Gray, fontSize = 12.sp,fontWeight = FontWeight.SemiBold)
                 Text(text = "Today 11:00 · Received", color = Color.Gray, fontSize = 12.sp)
             }
             Spacer(modifier = Modifier.weight(1f))
-            Text(text = "500EGP", fontWeight = FontWeight.Bold, fontSize = 16.sp,color= offred)
+            Text(text = "1000EGP", fontWeight = FontWeight.Bold, fontSize = 16.sp,color= offred)
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
