@@ -181,7 +181,9 @@ fun SignIn(
         Button(
             onClick = {
                 viewModel.signInUser(text, password)
-                navController.navigate(Routes.SCAFFOLDSCREEN)
+                if((text.isNotEmpty()) && (password.isNotEmpty())){
+                    navController.navigate(Routes.SCAFFOLDSCREEN)
+                }
             },
             enabled = true,
             modifier = Modifier
@@ -199,7 +201,7 @@ fun SignIn(
 
 
         viewModel.signInResult?.let {
-            navController.navigate(Routes.SETTINGS)
+
         }
         Row(
             horizontalArrangement = Arrangement.Center,
