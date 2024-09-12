@@ -1,20 +1,14 @@
 package com.example.spedotransferapp.ui.theme.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.gittest.ui.theme.LightBlue
 import com.example.spedotransferapp.R
 import com.example.spedotransferapp.models.NotificationModel
+
 
 @Composable
 fun NotificationScreen(navController: NavHostController) {
@@ -70,10 +65,10 @@ fun NotificationItem(noti: NotificationModel) {
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(4.dp)
+            .padding(8.dp)
             .height(120.dp),
-        backgroundColor = LightBlue,
-        elevation = 4.dp
+        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = LightBlue), // Material3 color
+        elevation = androidx.compose.material3.CardDefaults.cardElevation(4.dp)  // Material3 elevation
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -82,13 +77,12 @@ fun NotificationItem(noti: NotificationModel) {
                 .fillMaxWidth()
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.visa_icon),
-                contentDescription = "Icon",
-                tint = Color.Unspecified,
-                modifier = Modifier.size(60.dp)
+                imageVector = Icons.Default.Person,  // Replace with a default icon like CreditCard
+                contentDescription = "Notification",  // Describe the icon for accessibility
+                modifier = Modifier.size(32.dp)  // Set the size as needed
             )
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
             Column(
                 modifier = Modifier.weight(1f)
@@ -109,6 +103,6 @@ fun NotificationItem(noti: NotificationModel) {
 
 @Preview(showSystemUi = true)
 @Composable
-private fun NotificationScreenPrev() {
+fun NotificationScreenPreview() {
     NotificationScreen(rememberNavController())
 }

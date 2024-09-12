@@ -222,7 +222,7 @@ fun TransactionItem(navController: NavController, transaction: Transaction) {
 
 val transactionsData = listOf(
     Transaction(
-        senderName = "Ahmed Mohamed",
+        senderName = "Mohammed Atef",
         cardNumber = "Visa. Mater Card. 1234",
         transactionType = "Received",
         amount = "$1000",
@@ -230,7 +230,7 @@ val transactionsData = listOf(
         status = "Successful"
     ),
     Transaction(
-        senderName = "Ahmed Mohamed",
+        senderName = "Mohammed Atef",
         cardNumber = "Visa. Mater Card. 1234",
         transactionType = "Received",
         amount = "$1000",
@@ -238,7 +238,7 @@ val transactionsData = listOf(
         status = "Failed"
     ),
     Transaction(
-        senderName = "Ahmed Mohamed",
+        senderName = "Kareem Mahmoud",
         cardNumber = "Visa. Mater Card. 1234",
         transactionType = "Received",
         amount = "$1000",
@@ -340,7 +340,7 @@ fun SuccessTransactionScreen(navController: NavController) {
                         color = Color(0xFF9E8178),
                         fontWeight = FontWeight.Bold
                     )
-                    Text(text = "Asmaa Dosuky", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "Khaled Mahmoud", fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     Text(text = "Account xxxx7890", fontSize = 14.sp, color = Color(0xFF9E8178))
                 }
             }
@@ -377,7 +377,7 @@ fun SuccessTransactionScreen(navController: NavController) {
                         color = Color(0xFF9E8178),
                         fontWeight = FontWeight.Bold
                     )
-                    Text(text = "Jonathon Smith", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "Mohammed Atef", fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     Text(text = "Account xxxx7890", fontSize = 14.sp, color = Color(0xFF9E8178))
                 }
             }
