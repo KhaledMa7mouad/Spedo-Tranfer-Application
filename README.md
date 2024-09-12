@@ -10,5 +10,8 @@ Technologies Used
 Kotlin: For developing native Android features.
 Jetpack Compose: For building modern and responsive UI components.
 API Services: For secure and reliable transaction processing.
+
 Getting Started
 To get started with the Spedo Transfer App, clone the repository and follow the setup instructions in the Installation Guide.
+
+(https://github.com/user-attachments/assets/7ed51c15-16cb-4660-a2fb-66485fd374ec)
