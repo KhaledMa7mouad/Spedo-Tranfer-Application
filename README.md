@@ -15,8 +15,8 @@
 - **API Services**: For secure and reliable transaction processing.
 
 ## Screenshots
+![Screenshot 2024-09-12 111716](https://github.com/user-attachments/assets/5f6af3d2-69b8-47b8-acc1-9bcc01213ce0)
 
-![App Screenshot](assets/app-screenshot.png)
 
 ## Getting Started
 
